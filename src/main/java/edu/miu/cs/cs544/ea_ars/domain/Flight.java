@@ -8,6 +8,8 @@ import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@NoArgsConstructor
 @Data
 @ToString(exclude = {"airline","origin","destination","tickets"})
 @EqualsAndHashCode(exclude = {"airline","origin","destination","tickets"})
