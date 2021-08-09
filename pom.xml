@@ -8,11 +8,11 @@
         <version>2.5.3</version>
         <relativePath/> <!-- lookup parent from com.example.testnaem.repository -->
     </parent>
-    <groupId>com.example</groupId>
-    <artifactId>test-naem</artifactId>
+    <groupId>edu.miu.cs.cs544</groupId>
+    <artifactId>ea_ars</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>test-naem</name>
+    <name>ea_ars</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
