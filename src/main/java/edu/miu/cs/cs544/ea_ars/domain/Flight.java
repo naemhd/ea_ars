@@ -19,7 +19,7 @@ public class Flight {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column(unique = true)
+//	@Column(unique = true)
 	private String flightNumber;
 
 	private int capacity;
@@ -44,7 +44,7 @@ public class Flight {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Airport destination;
 
-	@OneToMany
+	@OneToMany(mappedBy = "flight")
 	private Set<Ticket> tickets = new HashSet<>();
 
 	@ManyToOne

@@ -12,6 +12,8 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @ToString
+
+@Table(name = "Users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +23,8 @@ public class User {
 
     private String password;
 
-//    @ElementCollection //(fetch = FetchType.EAGER)
-//    @CollectionTable(name = "UserRole", joinColumns = @JoinColumn(name = "id"))
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value=EnumType.STRING)
+    @Column(name="role",columnDefinition = "text",length = 15)
     private UserRole role;
 
     private boolean isEnabled;
