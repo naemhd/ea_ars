@@ -26,4 +26,9 @@ public class AirlineService {
         airlineRepository.save(airline);
         return airline;
     }
+
+    public Airline delete(Airline airline){
+        airlineRepository.delete(airline);
+        return airline;
+    }
 }
