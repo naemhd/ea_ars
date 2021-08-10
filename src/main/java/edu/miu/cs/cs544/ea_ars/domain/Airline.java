@@ -18,7 +18,7 @@ import java.util.Set;
 public class Airline {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
 	@NotNull
 	private String code;

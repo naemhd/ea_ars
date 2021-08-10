@@ -17,7 +17,7 @@ public class Flight {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
 	@Column(unique = true)
 	private String flightNumber;
@@ -32,9 +32,6 @@ public class Flight {
 
 	private LocalTime arrivalTime;
 
-//	@Transient
-//	private static int numberOfPaidReservation;
-	
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Airline airline;
 	
@@ -46,9 +43,6 @@ public class Flight {
 
 	@OneToMany(mappedBy = "flight",cascade = CascadeType.PERSIST)
 	private Set<Ticket> tickets = new HashSet<>();
-
-	@ManyToOne
-	private Passenger passenger;
 
 	public Flight(String flightnr, LocalDate departureDate, LocalTime departureTime,
 				  LocalDate arrivalDate, LocalTime arrivalTime) {
@@ -62,7 +56,7 @@ public class Flight {
 
 	public Flight(String flightnr, LocalDate departureDate, LocalTime departureTime,
                   LocalDate arrivalDate, LocalTime arrivalTime, Airline airline,
-                  Airport origin, Airport destination, Passenger passenger) {
+                  Airport origin, Airport destination) {
 		this.flightNumber = flightnr;
 		setDepartureDate(departureDate);
 		setDepartureTime(departureTime);
@@ -71,7 +65,6 @@ public class Flight {
 		this.airline = airline;
 		this.origin = origin;
 		this.destination = destination;
-		this.passenger = passenger;
 	}
 
 //	private void setNumberOfPaidReservation(){}
