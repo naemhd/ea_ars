@@ -1,59 +1,118 @@
 package edu.miu.cs.cs544.ea_ars.controller;
 
 import edu.miu.cs.cs544.ea_ars.domain.Flight;
+import edu.miu.cs.cs544.ea_ars.dto.DTOModel.FlightDTO;
+import edu.miu.cs.cs544.ea_ars.dto.adapter.FlightDTOAdapter;
 import edu.miu.cs.cs544.ea_ars.service.FlightServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
-@RequestMapping("api/flight")
+@RequestMapping("api/flights")
 public class FlightController {
+
+    @Autowired
+    private FlightDTOAdapter flightDTOAdapter;
 
     @Autowired
     private FlightServiceImpl flightService;
 
     @GetMapping
-    public List<Flight> getAllFlights(){
-        return flightService.getAllFlight();
+    public List<FlightDTO> findAllFlights() {
+        return flightService.findAllFlight();
     }
 
+//    Get pageable list of flights
+    @GetMapping(params = "paged=true")
+    public Page<Flight> findAllFlights(Pageable pageable) {
+        return flightService.findAllFlight(pageable);
+    }
+
+    //    Get single flight
     @GetMapping("/{flightNumber}")
-    public ResponseEntity<?> getFlight(@PathVariable String flightNumber){
+    public Object findFlight(@PathVariable String flightNumber) {
         try {
-            return new ResponseEntity(flightService.getFlight(flightNumber),HttpStatus.OK);
-        }
-        catch (Exception e){
+            return flightService.findFlight(flightNumber);
+        } catch (Exception e) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
 
-    @PostMapping("/save")
-    public ResponseEntity<Flight> addFlight(@RequestBody Flight flightRequestEntity){
+//    Save a flight
+    @PostMapping
+    public Object saveFlight(@RequestBody FlightDTO flightRequestEntity, BindingResult result) {
         //security check
-       try{
-            if(flightService.addFlight(flightRequestEntity)){
-                return  new ResponseEntity(HttpStatus.OK);
+        try {
+            if (!result.hasErrors() && flightService.saveFlight(flightRequestEntity)) {
+                return new ResponseEntity(HttpStatus.OK);
+            } else {
+                return result.toString();
             }
-            else{
-                return  new ResponseEntity(HttpStatus.valueOf("Something went wrong!"));
-            }
-        }
-        catch(Exception e){
-            return new ResponseEntity(HttpStatus.valueOf(HttpStatus.BAD_REQUEST + e.getMessage() ));
+        } catch (Exception e) {
+            return result.getAllErrors();
         }
     }
 
-    @PutMapping("/update/")
-    public ResponseEntity<Flight> updateFlight(@PathVariable Flight flight){
-        try{
-            return new ResponseEntity(flightService.updateFlight(flight), HttpStatus.OK);
+//    Save flights
+    @PostMapping("/all")
+    public Object saveFlights(@RequestBody Set<FlightDTO> flights, BindingResult result){
+        if(!result.hasErrors()){
+            flightService.saveFlights(flights);
+            return result.toString();
+        }
+        return result.getAllErrors();
+    }
+
+//    Update single flight if exist or save if new object
+    @PutMapping
+    public Object updateFlight(@RequestBody FlightDTO flight, BindingResult result) {
+        try {
+            if (!result.hasErrors()) {
+                return flightService.updateFlight(flight);
+            } else {
+                return result.getAllErrors();
+            }
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
+//    Delete a flight looking by flight number
+    @DeleteMapping("{flightNumber}")
+    public Object deleteFlight(@Valid @PathVariable String flightNumber) {
+        try {
+            flightService.deleteFlight(flightNumber);
+            return "Successfully deleted!";
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
+//    View list of all flights between a departure and destination on a given date
+//    Direct flight only
+    @GetMapping("/direct")
+        public @ResponseBody
+    List<FlightDTO> findAllDirectFlight(String from, String to, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate flightDate){
+        try {
+            List<FlightDTO> flights= flightService.findDirectFlights(from, to, flightDate);
+            return flights;
         }
         catch (Exception e){
-            return new ResponseEntity(HttpStatus.valueOf(e.getMessage()));
+            return new ArrayList<>();
         }
+
     }
 }
