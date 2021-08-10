@@ -1,34 +1,33 @@
-package edu.miu.cs.cs544.ea_ars.domain;
+package edu.miu.cs.cs544.ea_ars.dto;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import edu.miu.cs.cs544.ea_ars.domain.Address;
+import edu.miu.cs.cs544.ea_ars.domain.Reservation;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.*;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
-public class Passenger {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class PassengerDTO {
+
     private Long Id;
 
     @NotEmpty
-    @Column(length = 50, nullable = false)
     private String firstName;
 
     @NotEmpty
-    @Column(length = 50, nullable = false)
     private String lastName;
 
     @Past
@@ -36,20 +35,18 @@ public class Passenger {
 
     private String email;
 
-    @Embedded
     private Address address;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "passenger", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private List<Reservation> reservations = new ArrayList<>();
+//    @JsonManagedReference
+    private List<ReservationDTO> reservations = new ArrayList<>();
 
-    public Passenger(String firstName, String lastName, LocalDate dateOfBirth) {
+    public PassengerDTO(String firstName, String lastName, LocalDate dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Passenger(String firstName, String lastName, String email, LocalDate dateOfBirth, Address address, List<Reservation> reservations) {
+    public PassengerDTO(String firstName, String lastName,String email, LocalDate dateOfBirth, Address address, List<ReservationDTO> reservations) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -58,11 +55,13 @@ public class Passenger {
         this.email = email;
     }
 
-    //Convenience method
-    public void addReservation(Reservation reservation) {
-        reservation.setPassenger(this);
-        this.reservations.add(reservation);
-    }
+//    Convenience method
+        public void addReservation(ReservationDTO reservation){
+            reservation.setPassenger(PassengerAdopter.getPassenger(this));
+            this.reservations.add(reservation);
+        }
 
 
 }
+
+
