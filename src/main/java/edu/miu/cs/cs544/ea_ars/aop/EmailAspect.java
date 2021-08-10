@@ -20,7 +20,7 @@ public class EmailAspect {
     public void sendConfiramtionEmail(JoinPoint joinpoint) {
         new Thread() {
             public void run() {
-                emailService.sendMail("wushuramato@gmail.com");			}
+                emailService.sendMail("naemhd@gmail.com");			}
         }.start();
         }
     }
