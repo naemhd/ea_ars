@@ -1,6 +1,7 @@
 package edu.miu.cs.cs544.ea_ars.service;
-;
 import edu.miu.cs.cs544.ea_ars.domain.Airport;
+import edu.miu.cs.cs544.ea_ars.dto.AirPortDto;
+import edu.miu.cs.cs544.ea_ars.dto.adapter.AirPortDtoEntity;
 import edu.miu.cs.cs544.ea_ars.repository.AirPortRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,20 +12,31 @@ import java.util.List;
 public class AirPortServiceImpl implements AirPortService {
     @Autowired
     AirPortRepository airPortRepository;
+    @Autowired
+    AirPortDtoEntity airPortDtoEntity;
     @Override
-    public List<Airport> findAllAirports() {
-        return airPortRepository.findAll();
+    public List<AirPortDto> findAllAirports() {
+
+        return airPortDtoEntity.entityToDto(airPortRepository.findAll());
     }
 
     @Override
-    public Airport findAirPortById(Long id) {
+    public AirPortDto findAirPortById(Long id) {
         System.out.println("In service class");
-        return airPortRepository.findById(id).get();
+        return airPortDtoEntity.entityToDto(airPortRepository.findById(id).get());
     }
 
     @Override
-    public Airport saveOrUpdateAirport(Airport airport) {
-        return airPortRepository.save(airport);
+    public Airport saveOrUpdateAirport(AirPortDto airPortDto) {
+        Airport airport=airPortDtoEntity.creatEntityFromDto(airPortDto);
+       return  airport=airPortRepository.save(airport);
+
+    }
+
+    @Override
+    public Airport updateAirport(AirPortDto airPortDto) {
+        Airport airport=airPortDtoEntity.dtoToEntity(airPortDto);
+        return  airport=airPortRepository.save(airport);
     }
 
     @Override

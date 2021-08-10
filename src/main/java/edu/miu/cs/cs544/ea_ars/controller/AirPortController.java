@@ -25,59 +25,38 @@ public class AirPortController {
     AirPortService airPortService;
 
     @GetMapping()
-    public List<AirPortDto> getAllAirports(){
+    public List<AirPortDto> getAllAirports() {
 
-        return airPortDtoEntity.entityToDto(airPortService.findAllAirports());
+        return airPortService.findAllAirports();
     }
-    @GetMapping({"/get/{id}"})
-    public Airport getAirPortById(@PathVariable(name="id") Long airportId){
-        System.out.println("In controller class");
+
+    @GetMapping({"/{id}"})
+    public AirPortDto getAirPortById(@PathVariable(name = "id") Long airportId) {
         return airPortService.findAirPortById(airportId);
-//        return airPortDtoEntity.entityToDto(airPortService.findAirPortById(airportId));
     }
-//    @GetMapping("/{id}")
-//    public Airport getAirPortById(@PathVariable Long airportId){
-//        return airPortService.findAirPortById(airportId);
-//    }
-
-    @PostMapping("/save")
-    public ResponseEntity<Airport> createAirPort(@RequestBody AirPortDto airPortDto){
-        Airport airport=new Airport();
-        airport.setName(airPortDto.getName());
-        airport.setAirportCode(airPortDto.getAirportCode());
-        airport.setAddress(airPortDto.getAddress());
-        airport=airPortService.saveOrUpdateAirport(airport);
-        if(airport!=null){
+    @PostMapping
+    public ResponseEntity<Airport> createAirPort(@RequestBody AirPortDto airPortDto) {
+        Airport airport = new Airport();
+        airport = airPortService.saveOrUpdateAirport(airPortDto);
+        if (airport != null) {
             return new ResponseEntity<Airport>(airport, HttpStatus.OK);
         }
         return new ResponseEntity<Airport>(HttpStatus.NOT_FOUND);
     }
-    @DeleteMapping("/delete/{id}")
-    public void deleteAirPort(@PathVariable Long id){
+
+    @DeleteMapping("/{id}")
+    public void deleteAirPort(@PathVariable Long id) {
         airPortService.deleteAirPort(id);
     }
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Airport> updateAirport(@PathVariable(name="id") Long id, @RequestBody Airport airport){
-        airport= airPortService.saveOrUpdateAirport(airport);
-        if(airport!=null){
+
+    @PutMapping("{id}")
+    public ResponseEntity<Airport> updateAirport(@PathVariable(name = "id") Long id, @RequestBody AirPortDto airPortDto) {
+        Airport airport = airPortService.updateAirport(airPortDto);
+        if (airport != null) {
             return new ResponseEntity<Airport>(airport, HttpStatus.OK);
         }
         return new ResponseEntity<Airport>(HttpStatus.NOT_FOUND);
     }
-//    @PutMapping("/update/{id}")
-    public ResponseEntity<Airport> updateAirport(@RequestBody AirPortDto airPortDto){
-        Airport airport1= airPortService.findAirPortById(airPortDto.getId());
-//        Airport airport= airPortService.findAirPortById(id);
-//        airport.setAirportCode(airport1.getAirportCode());
-//        airport.setName(airport1.getName());
-//        airport.setAddress(airport1.getAddress());
-        Airport airport2=airPortDtoEntity.dtoToEntity(airPortDto);
-        airport1= airPortService.saveOrUpdateAirport(airport2);
-        if(airport1!=null){
-            return new ResponseEntity<Airport>(airport1, HttpStatus.OK);
-        }
-        return new ResponseEntity<Airport>(HttpStatus.NOT_FOUND);
-    }
-
 
 }
+

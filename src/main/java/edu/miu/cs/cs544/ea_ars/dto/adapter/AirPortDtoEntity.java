@@ -27,7 +27,11 @@ public class AirPortDtoEntity {
           airport.setAddress(airPortDto.getAddress());
           return airport;
      }
-//     public List<Airport> dtoToEntity(AirPortDto airPortDtos){
-//         return airPortDtos.stream().map(a->dtoToEntity(a)).collect(Collectors.toList());
-//     }
+    public Airport creatEntityFromDto(AirPortDto airPortDto){
+        Airport  airport=new Airport();
+        airport.setAirportCode(airPortDto.getAirportCode());
+        airport.setName(airPortDto.getName());
+        airport.setAddress(airPortDto.getAddress());
+        return airport;
+    }
 }

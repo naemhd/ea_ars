@@ -1,15 +1,17 @@
 package edu.miu.cs.cs544.ea_ars.service;
 
 import edu.miu.cs.cs544.ea_ars.domain.Airport;
+import edu.miu.cs.cs544.ea_ars.dto.AirPortDto;
 
 import java.util.List;
 
 public interface AirPortService {
-    List<Airport> findAllAirports();
+    List<AirPortDto> findAllAirports();
 
-    Airport findAirPortById(Long id);
+    AirPortDto findAirPortById(Long id);
 
-    Airport saveOrUpdateAirport(Airport airport);
+    Airport saveOrUpdateAirport(AirPortDto airPortDto);
+    Airport updateAirport(AirPortDto airPortDto);
 
     void deleteAirPort(Long id);
 
