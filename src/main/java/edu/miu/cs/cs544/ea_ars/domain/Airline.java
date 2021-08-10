@@ -27,6 +27,6 @@ public class Airline {
 	private String name;
 
 	@Lob
-	@Column(table = "AirlineHistory")
+	@Column(table = "AirlineHistory", length = 2000)
 	private String history;
 }
