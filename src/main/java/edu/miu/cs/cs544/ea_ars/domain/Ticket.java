@@ -1,5 +1,6 @@
 package edu.miu.cs.cs544.ea_ars.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,7 +28,9 @@ public class Ticket {
     @ManyToOne
     private Flight flight;
 
-    @ManyToOne
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
     private Reservation reservation;
 
     public Ticket(int number, String reservationCode, LocalDate flightDate) {
