@@ -33,7 +33,7 @@ public class Reservation {
     @ManyToOne
     private User reservedBy;
 
-    @OneToMany(mappedBy = "reservation")
+    @OneToMany
     private Set<Ticket> tickets = new HashSet<>();
 
     @ManyToOne

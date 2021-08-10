@@ -11,13 +11,13 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @Data
-@ToString(exclude = {"airline","origin","destination","tickets"})
-@EqualsAndHashCode(exclude = {"airline","origin","destination","tickets"})
+@ToString(exclude = {"airline","origin","destination"})
+@EqualsAndHashCode(exclude = {"airline","origin","destination"})
 public class Flight {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 
 	@Column(unique = true)
 	private String flightNumber;
@@ -41,7 +41,7 @@ public class Flight {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Airport destination;
 
-	@OneToMany(mappedBy = "flight")
+	@OneToMany(mappedBy = "flight",cascade = CascadeType.PERSIST)
 	private Set<Ticket> tickets = new HashSet<>();
 
 	public Flight(String flightnr, LocalDate departureDate, LocalTime departureTime,

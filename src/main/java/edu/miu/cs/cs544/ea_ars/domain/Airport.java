@@ -9,7 +9,8 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity @NoArgsConstructor
+@Entity
+@NoArgsConstructor
 @Getter
 @Setter @ToString
 //@Table(uniqueConstraints={@UniqueConstraint(columnNames ={"airportCode"})})
@@ -17,7 +18,7 @@ public class Airport {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 
 	@Column(length = 3, nullable = false)
 	private String airportCode;

@@ -18,7 +18,7 @@ import java.util.Set;
 public class Airline {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 
 	@NotNull
 	private String code;
@@ -27,6 +27,6 @@ public class Airline {
 	private String name;
 
 	@Lob
-	@Column(table = "AirlineHistory")
+	@Column(table = "AirlineHistory", length = 2000)
 	private String history;
 }

@@ -24,7 +24,7 @@ public class Ticket {
 
     private LocalDate flightDate;
 
-    @ManyToOne
+   @ManyToOne
     private Flight flight;
 
     @ManyToOne

@@ -1,19 +1,18 @@
-Spring:
+spring:
   datasource:
-    url: jdbc:sqlserver://localhost:1433;databaseName=ARS
-    username: sa
-    password: abc123
-    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-  hikari:
-    maximumPoolSize:10
-  jpa:
-    show-sql: true
-    hibernate.ddl-auto: create
-    hibernate:
-      naming:
-        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    properties:
-      hibernate:
-        dialect:org.hibernate.dialect.SQLServer2008Dialect
+    url: "jdbc:h2:mem:testdb"
+    driver-class-name: "org.h2.Driver"
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: "samsonramato@gmail.com"
+    password: "walyyswxfjeodnnw"
 
+    properties:
+      mail:
+        smtp:
+          auth: "true"
+          starttls:
+            enable: "true"
+  jpa:
+    database-platform: "org.hibernate.dialect.H2Dialect"
