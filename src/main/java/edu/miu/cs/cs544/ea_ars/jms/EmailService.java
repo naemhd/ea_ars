@@ -14,6 +14,7 @@ import java.util.List;
 public class EmailService {
     @Autowired
     JavaMailSender javaMailSender;
+    @Async
     public String sendMail(String dataAdmin){
         SimpleMailMessage message=new SimpleMailMessage();
         message.setFrom("samsonramato@gmail.com");
