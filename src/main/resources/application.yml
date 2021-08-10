@@ -1,6 +1,7 @@
 spring:
-  application:
-    name: ea_ars
+  datasource:
+    url: "jdbc:h2:mem:testdb"
+    driver-class-name: "org.h2.Driver"
   mail:
     host: smtp.gmail.com
     port: 587
@@ -12,32 +13,6 @@ spring:
         smtp:
           auth: "true"
           starttls:
-             enable: "true"
-  datasource:
-    url: jdbc:sqlserver://localhost;databaseName=project
-    username: sa
-    password: 21samgmail
-    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    hikari:
-      maximumPoolSize: 10
+            enable: "true"
   jpa:
-    show-sql: true
-    hibernate:
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
-      ddl-auto: create
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.SQLServer2008Dialect
-#  security:
-#    user:
-#      name: user
-#      password: 123456
-
-logging:
-  file:
-    name: /Coding/Logging/${spring.application.name}/log
-server:
-  port: 8080
-
+    database-platform: "org.hibernate.dialect.H2Dialect"
