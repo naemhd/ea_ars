@@ -90,16 +90,17 @@ public class PassengerController {
     }
 
     @PostMapping("/{id}/reservations")
-    public ResponseEntity<?> MakeReservation(@PathVariable Long id, @RequestBody ReservationDTO reservation) {
-        PassengerDTO passenger = passengerService.findOne(id);
+    public ResponseEntity<?> MakeReservation(@PathVariable Long id, @RequestBody Reservation reservation) {
+        Passenger passenger =PassengerAdopter.getPassenger(passengerService.findOne(id));
 //        reservation.setPassenger(passenger);
         passenger.addReservation(reservation);
+        PassengerDTO passengerDTO = PassengerAdopter.getPassengerDTO(passenger);
 //        Passenger passenger2 = passengerService.findOne(id);
 //        passengerService.flush();
 //        passengerService.addPassenger(passenger);
 //        reservationService.addReservation(reservation);
-//        passengerService.updatePassenger(id,passenger);
-        return new ResponseEntity<PassengerDTO>(passengerService.updatePassenger(id, passenger), HttpStatus.OK);
+        passengerService.updatePassenger(id,passengerDTO);
+        return new ResponseEntity<Passenger>(passenger, HttpStatus.OK);
     }
 
     @GetMapping("/{id}/reservations/{reservationId}")
