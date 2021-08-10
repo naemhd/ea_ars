@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @ToString
+@Table(name="UsersTable")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

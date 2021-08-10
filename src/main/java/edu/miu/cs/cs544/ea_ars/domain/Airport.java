@@ -9,7 +9,8 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity @NoArgsConstructor
+@Entity
+@NoArgsConstructor
 @Getter
 @Setter @ToString
 public class Airport {
