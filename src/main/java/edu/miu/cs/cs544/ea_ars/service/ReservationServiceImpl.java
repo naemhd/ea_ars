@@ -1,8 +1,13 @@
 package edu.miu.cs.cs544.ea_ars.service;
 
+import edu.miu.cs.cs544.ea_ars.domain.Flight;
 import edu.miu.cs.cs544.ea_ars.domain.Reservation;
+import edu.miu.cs.cs544.ea_ars.dto.PassengerAdopter;
 import edu.miu.cs.cs544.ea_ars.dto.ReservationAdopter;
 import edu.miu.cs.cs544.ea_ars.dto.ReservationDTO;
+import edu.miu.cs.cs544.ea_ars.dto.DTOModel.FlightDTO;
+import edu.miu.cs.cs544.ea_ars.dto.adapter.FlightDTOAdapter;
+import edu.miu.cs.cs544.ea_ars.repository.FlightRepository;
 import edu.miu.cs.cs544.ea_ars.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +17,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -19,6 +25,9 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Autowired
     private ReservationRepository reservationRepository;
+    
+    @Autowired
+    private FlightRepository flightRepository;
 
     public List<ReservationDTO> findAll() {
        List<Reservation> reservationList = reservationRepository.findAll();
@@ -43,10 +52,30 @@ public class ReservationServiceImpl implements ReservationService {
         return null;
     }
 
-    public ReservationDTO addReservation(ReservationDTO reservationDTO) {
-        Reservation reservation = ReservationAdopter.getReservation(reservationDTO);
-        reservationRepository.save(reservation);
-        return reservationDTO;
+    public ReservationDTO addReservation(ReservationDTO reservationDTO,Long flightId) {
+    	
+    	Optional<Flight> flight = flightRepository.findById(flightId);
+    	
+    	if(flight.isPresent()) {
+    		Flight f = flight.get();
+    		
+    		if(f.getCapacity() <= 500) {
+
+        		f.setCapacity(f.getCapacity() + 1);
+        		
+        		
+        		flightRepository.save(f);
+        		
+        		Reservation reservation = ReservationAdopter.getReservation(reservationDTO);
+                
+        		
+        		return ReservationAdopter.getReservationDTO(reservationRepository.save(reservation));
+        	}
+    	}
+    	
+    	
+    	
+        return null;
     }
 
     public void deleteReservation(Long id) {

@@ -42,9 +42,9 @@ public class ReservationController {
         return new ResponseEntity<ReservationDTO>(reservationDTO, HttpStatus.OK);
     }
 
-    @PostMapping()
-    public ReservationDTO AddReservation(@Valid @RequestBody ReservationDTO reservationDTO) {
-        return reservationService.addReservation(reservationDTO);
+    @PostMapping("/{flightId}")
+    public ReservationDTO AddReservation(@Valid @RequestBody ReservationDTO reservationDTO,@PathVariable Long flightId) {
+        return reservationService.addReservation(reservationDTO, flightId);
     }
 
     @DeleteMapping("/{id}")

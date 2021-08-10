@@ -15,7 +15,7 @@ public interface ReservationService {
 
     public ReservationDTO findOne(Long id);
 
-    public ReservationDTO addReservation(ReservationDTO reservationDTO);
+    public ReservationDTO addReservation(ReservationDTO reservationDTO, Long flightId);
 
     public void deleteReservation(Long id);
 
