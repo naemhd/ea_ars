@@ -18,6 +18,10 @@ public class AirlineService {
         return airlineRepository.findAll(pageable);
     }
 
+    public Page<Airline> getAllAirlinesByAirport(Pageable pageable,String airportCode){
+        return airlineRepository.listAirlinesByAirport(airportCode,pageable);
+    }
+
     public Airline findById(Long airlineId){
         return airlineRepository.findById(airlineId).get();
     }

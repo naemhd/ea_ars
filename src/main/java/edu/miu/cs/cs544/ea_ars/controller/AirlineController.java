@@ -1,6 +1,8 @@
 package edu.miu.cs.cs544.ea_ars.controller;
 
 import edu.miu.cs.cs544.ea_ars.domain.Airline;
+import edu.miu.cs.cs544.ea_ars.dto.AirlineAdaptar;
+import edu.miu.cs.cs544.ea_ars.dto.AirlineDTO;
 import edu.miu.cs.cs544.ea_ars.service.AirlineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,8 +13,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/airlines")
+@RequestMapping("/api/airlines")
 public class AirlineController {
+
+    @Autowired
+    private AirlineAdaptar airlineAdaptar;
 
     @Autowired
     private AirlineService airlineService;
@@ -20,6 +25,12 @@ public class AirlineController {
     @GetMapping(params = "paged=true")
     public Page<Airline> findAll(Pageable pageable){
         return airlineService.getAllAirlines(pageable);
+
+    }
+
+    @GetMapping("/by-airport")
+    public Page<Airline> findAllByAirport(Pageable pageable,String airportCode){
+        return airlineService.getAllAirlinesByAirport(pageable,airportCode);
     }
 
     @GetMapping("/{id}")

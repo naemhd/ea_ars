@@ -1,15 +1,18 @@
 package edu.miu.cs.cs544.ea_ars.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
-
 
 @Entity
 @Getter
@@ -18,9 +21,11 @@ import java.util.Set;
 @ToString
 public class Reservation {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotEmpty
+    @Size(max=6)
     @Column(length=6, nullable=false)
     private String reservationCode;
 
@@ -33,10 +38,13 @@ public class Reservation {
     @ManyToOne
     private User reservedBy;
 
-    @OneToMany
+    @JsonManagedReference
+    @OneToMany(mappedBy = "reservation", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Ticket> tickets = new HashSet<>();
 
-    @ManyToOne
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
     private Passenger passenger;
 
     public Reservation(String reservationCode, LocalDate reservationDate) {

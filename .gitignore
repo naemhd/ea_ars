@@ -19,8 +19,6 @@ target/
 *.iml
 *.ipr
 *.yml
-*.xml
-./src/main/java/edu/miu/cs/cs544/ea_ars/dto/adapter/DTOAdapter.java
 
 ### NetBeans ###
 /nbproject/private/
