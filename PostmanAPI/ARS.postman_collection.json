@@ -1,0 +1,258 @@
+{
+	"info": {
+		"_postman_id": "0e6de58d-83b4-400f-864f-bfb5f6360d33",
+		"name": "ARS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/api/users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"wonde\",\r\n    \"password\":\"wonde\",\r\n    \"role\":{\r\n        \"role\":\"ADMIN\"\r\n    },\r\n    \"isEnabled\":\"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"wonde\",\r\n    \"password\":\"wonde\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/flights",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"arrivalDate\":\"2021-01-01\",\r\n    \"arrivalTime\":\"06:00\",\r\n    \"capacity\":\"10\",\r\n    \"departureDate\":\"2021-01-01\",\r\n    \"departureTime\":\"12:00\",\r\n    \"flightNumber\":\"12345\",\r\n    \"airline\":{\r\n        \"code\":\"AU\",\r\n        \"name\":\"United Airlines\",\r\n        \"history\":\"history\"\r\n    },\r\n    \"destination\":{\r\n        \"address\":{\r\n            \"city\":\"fairfield\",\r\n            \"state\":\"IA\",\r\n            \"street\":\"1000 N 4th\",\r\n            \"zipCode\":\"52557\"\r\n        },\r\n        \"airportCode\":\"CID\",\r\n        \"name\":\"Eastern Iowa Airport\"\r\n    },\r\n    \"origin\":{\r\n        \"address\":{\r\n            \"city\":\"Royneldsburg\",\r\n            \"state\":\"OH\",\r\n            \"street\":\"12540 S 2th\",\r\n            \"zipCode\":\"12325\"\r\n        },\r\n        \"airportCode\":\"OCD\",\r\n        \"name\":\"Columbus Airport\"\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/flights",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flights"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/flights/12345",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/flights/12345",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flights",
+						"12345"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/flights",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"arrivalDate\":\"2021-01-02\",\r\n    \"arrivalTime\":\"06:10\",\r\n    \"capacity\":\"10\",\r\n    \"departureDate\":\"2021-02-02\",\r\n    \"departureTime\":\"12:30\",\r\n    \"flightNumber\":\"12345\",\r\n    \"airline\":{\r\n        \"code\":\"AU\",\r\n        \"name\":\"United Airlines\",\r\n        \"history\":\"history\"\r\n    },\r\n    \"destination\":{\r\n        \"address\":{\r\n            \"city\":\"fairfield\",\r\n            \"state\":\"IA\",\r\n            \"street\":\"1000 N 4th\",\r\n            \"zipCode\":\"52557\"\r\n        },\r\n        \"airportCode\":\"CID\",\r\n        \"name\":\"Eastern Iowa Airport\"\r\n    },\r\n    \"origin\":{\r\n        \"address\":{\r\n            \"city\":\"Royneldsburg\",\r\n            \"state\":\"OH\",\r\n            \"street\":\"12540 S 2th\",\r\n            \"zipCode\":\"12325\"\r\n        },\r\n        \"airportCode\":\"OCD\",\r\n        \"name\":\"Columbus Airport\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/flights",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flights"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/flights/12345",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/flights/12345",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flights",
+						"12345"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/flights/all",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n\t\t\"arrivalDate\":\"2021-01-01\",\r\n\t\t\"arrivalTime\":\"06:00\",\r\n\t\t\"capacity\":\"10\",\r\n\t\t\"departureDate\":\"2021-01-01\",\r\n\t\t\"departureTime\":\"12:00\",\r\n\t\t\"flightNumber\":\"12345\",\r\n\t\t\"airline\":{\r\n\t\t\t\"code\":\"AU\",\r\n\t\t\t\"name\":\"United Airlines\",\r\n\t\t\t\"history\":\"history\"\r\n\t\t},\r\n\t\t\"destination\":{\r\n\t\t\t\"address\":{\r\n\t\t\t\t\"city\":\"fairfield\",\r\n\t\t\t\t\"state\":\"IA\",\r\n\t\t\t\t\"street\":\"1000 N 4th\",\r\n\t\t\t\t\"zipCode\":\"52557\"\r\n\t\t\t},\r\n\t\t\t\"airportCode\":\"CID\",\r\n\t\t\t\"name\":\"Eastern Iowa Airport\"\r\n\t\t},\r\n\t\t\"origin\":{\r\n\t\t\t\"address\":{\r\n\t\t\t\t\"city\":\"Royneldsburg\",\r\n\t\t\t\t\"state\":\"OH\",\r\n\t\t\t\t\"street\":\"12540 S 2th\",\r\n\t\t\t\t\"zipCode\":\"12325\"\r\n\t\t\t},\r\n\t\t\t\"airportCode\":\"OCD\",\r\n\t\t\t\"name\":\"Columbus Airport\"\r\n\t\t}\r\n\t},\r\n\t{\r\n\t\t\"arrivalDate\":\"2021-02-01\",\r\n\t\t\"arrivalTime\":\"02:00\",\r\n\t\t\"capacity\":\"20\",\r\n\t\t\"departureDate\":\"2021-02-01\",\r\n\t\t\"departureTime\":\"12:00\",\r\n\t\t\"flightNumber\":\"12346\",\r\n\t\t\"airline\":{\r\n\t\t\t\"code\":\"AU\",\r\n\t\t\t\"name\":\"United Airlines\",\r\n\t\t\t\"history\":\"history\"\r\n\t\t},\r\n\t\t\"destination\":{\r\n\t\t\t\"address\":{\r\n\t\t\t\t\"city\":\"Addis Ababa\",\r\n\t\t\t\t\"state\":\"ETH\",\r\n\t\t\t\t\"street\":\"BIA\",\r\n\t\t\t\t\"zipCode\":\"001\"\r\n\t\t\t},\r\n\t\t\t\"airportCode\":\"BIA\",\r\n\t\t\t\"name\":\"Bole International airport\"\r\n\t\t},\r\n\t\t\"origin\":{\r\n\t\t\t\"address\":{\r\n\t\t\t\t\"city\":\"Fairfield\",\r\n\t\t\t\t\"state\":\"IA\",\r\n\t\t\t\t\"street\":\"10000 S 2th\",\r\n\t\t\t\t\"zipCode\":\"21215\"\r\n\t\t\t},\r\n\t\t\t\"airportCode\":\"CID\",\r\n\t\t\t\"name\":\"Eastern Iowa Airport\"\r\n\t\t}\r\n\t},\r\n\t{\r\n\t\t\"arrivalDate\":\"2021-02-01\",\r\n\t\t\"arrivalTime\":\"02:00\",\r\n\t\t\"capacity\":\"30\",\r\n\t\t\"departureDate\":\"2021-02-01\",\r\n\t\t\"departureTime\":\"06:00\",\r\n\t\t\"flightNumber\":\"12347\",\r\n\t\t\"airline\":{\r\n\t\t\t\"code\":\"ETH\",\r\n\t\t\t\"name\":\"Ethiopian Airlines\",\r\n\t\t\t\"history\":\"Ethiopian Airlines history\"\r\n\t\t},\r\n\t\t  \"destination\":{\r\n\t\t\t\"address\":{\r\n\t\t\t\t\"city\":\"Addis Ababa\",\r\n\t\t\t\t\"state\":\"ETH\",\r\n\t\t\t\t\"street\":\"BIA\",\r\n\t\t\t\t\"zipCode\":\"001\"\r\n\t\t\t},\r\n\t\t\t\"airportCode\":\"BIA\",\r\n\t\t\t\"name\":\"Bole International airport\"\r\n\t\t},\r\n\t\t\"origin\":{\r\n\t\t\t\"address\":{\r\n\t\t\t\t\"city\":\"Fairfield\",\r\n\t\t\t\t\"state\":\"IA\",\r\n\t\t\t\t\"street\":\"10000 S 2th\",\r\n\t\t\t\t\"zipCode\":\"21215\"\r\n\t\t\t},\r\n\t\t\t\"airportCode\":\"CID\",\r\n\t\t\t\"name\":\"Eastern Iowa Airport\"\r\n\t\t}\r\n\t}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/flights/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flights",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/flights",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/flights",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flights"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/flights/direct?from=OCD&to=CID&flightDate=2021-01-01",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/flights/direct?from=OCD&to=CID&flightDate=2021-01-01",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flights",
+						"direct"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "OCD"
+						},
+						{
+							"key": "to",
+							"value": "CID"
+						},
+						{
+							"key": "flightDate",
+							"value": "2021-01-01"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -29,4 +29,13 @@ public class Airline {
 	@Lob
 	@Column(table = "AirlineHistory", length = 2000)
 	private String history;
+
+	@OneToMany(mappedBy = "airline")
+	private Set<Flight> flights = new HashSet<>();
+
+	public Airline(String code, String name, String history) {
+		this.code = code;
+		this.name = name;
+		this.history = history;
+	}
 }
