@@ -2,6 +2,7 @@ package edu.miu.cs.cs544.ea_ars.service;
 
 import edu.miu.cs.cs544.ea_ars.domain.User;
 import edu.miu.cs.cs544.ea_ars.domain.UserPrincipal;
+import edu.miu.cs.cs544.ea_ars.dto.DTOModel.UserDTO;
 import edu.miu.cs.cs544.ea_ars.repository.UserRepository;
 import edu.miu.cs.cs544.ea_ars.utils.ResponseMessage;
 import edu.miu.cs.cs544.ea_ars.utils.jwt.JwtResponse;
@@ -44,11 +45,16 @@ public class MyUserDetailsService implements UserDetailsService {
         }
         return userDetails;
     }
-
+    public void deactivateUser(UserDetails user) {
+        User user1 =  userRepository.findUserByUsername(user.getUsername());
+        if(user1 != null){
+            user1.setIsEnabled(user.isEnabled());
+        }
+        userRepository.save(user1);
+    }
     public Object saveUser(User user) {
 //        Encrypt the password
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
 //        Check if the credentials exist
         if (loadUserByUsername(user.getUsername()) != null) {
             return new ResponseMessage("Credentials exist!");
@@ -58,12 +64,14 @@ public class MyUserDetailsService implements UserDetailsService {
         return new ResponseMessage("Successfully saved!");
     }
 
-    public JwtResponse login(String username, String password){
+    public JwtResponse login(String username, String password) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(username, password));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwtTocken = jwtUtils.generateJwtToken(authentication);
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-        return new JwtResponse(jwtTocken,userPrincipal.getUsername(),userPrincipal.getAuthorities());
+        return new JwtResponse(jwtTocken, userPrincipal.getUsername(), userPrincipal.getAuthorities());
     }
+
+
 }
