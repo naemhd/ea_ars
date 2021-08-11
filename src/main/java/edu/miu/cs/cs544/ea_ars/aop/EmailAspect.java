@@ -16,7 +16,7 @@ public class EmailAspect {
     public void sendConfiramtionEmail(JoinPoint joinpoint) {
         new Thread() {
             public void run() {
-                emailService.sendMail("samsonahmed@miu.edu");			}
+                emailService.sendMail("naemhd@gmail.com");			}
         }.start();
         }
     }
