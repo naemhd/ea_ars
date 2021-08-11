@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface FlightRepository extends JpaRepository<Flight, Integer> {
+public interface FlightRepository extends JpaRepository<Flight, Long> {
 
     public Flight findByFlightNumber(String flightnumber);
 
