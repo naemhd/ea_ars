@@ -19,4 +19,15 @@ public class EmailService {
         javaMailSender.send(message);
         return "message sent successfully";
     }
+    @Async
+    public String sendMailPassenger(String dataAdmin,String name){
+        SimpleMailMessage message=new SimpleMailMessage();
+        message.setFrom("samsonramato@gmail.com");
+        message.setTo(dataAdmin);
+        message.setSubject("Passenger created");
+        message.setText("Dear " + name +" you successfuly made reservation");
+        javaMailSender.send(message);
+        System.out.println("Message is sent");
+        return "message sent successfully";
+    }
 }
