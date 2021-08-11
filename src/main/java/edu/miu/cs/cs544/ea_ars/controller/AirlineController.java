@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/airlines")
+@RequestMapping("api/airlines")
 public class AirlineController {
 
     @Autowired
