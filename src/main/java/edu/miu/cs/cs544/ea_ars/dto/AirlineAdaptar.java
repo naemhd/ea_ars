@@ -29,7 +29,7 @@ public class AirlineAdaptar {
         List<AirlineDTO> airlineDTOList = new ArrayList<>();
         if (airlineList.size() != 0) {
             for (Airline airline : airlineList) {
-                airlineDTOList.add(AirlineAdaptar.getAirlineDTO(airline));
+                airlineDTOList.add(this.getAirlineDTO(airline));
             }
         }
         return airlineDTOList;
