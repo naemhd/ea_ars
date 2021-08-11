@@ -13,6 +13,7 @@ public class FlightDTOAdapter {
     public static FlightDTO flightDTOAdapter(Flight flight) {
 
         FlightDTO flightdto = new FlightDTO();
+        flightdto.setId(flight.getId());
         flightdto.setFlightNumber(flight.getFlightNumber());
         flightdto.setCapacity(flight.getCapacity());
         flightdto.setDepartureDate(flight.getDepartureDate());
@@ -34,6 +35,7 @@ public class FlightDTOAdapter {
 
         Flight flight = new Flight();
 
+        flight.setId(flightDTO.getId());
         flight.setFlightNumber(flightDTO.getFlightNumber());
         flight.setCapacity(flightDTO.getCapacity());
         flight.setDepartureDate(flightDTO.getDepartureDate());
