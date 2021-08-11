@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class AirlineService {
@@ -16,6 +18,10 @@ public class AirlineService {
 
     public Page<Airline> getAllAirlines(Pageable pageable){
         return airlineRepository.findAll(pageable);
+    }
+
+    public List<Airline> getAllAirlines(){
+        return airlineRepository.findAll();
     }
 
     public Page<Airline> getAllAirlinesByAirport(Pageable pageable,String airportCode){

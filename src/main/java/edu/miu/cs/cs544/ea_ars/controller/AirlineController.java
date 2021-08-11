@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/airlines")
@@ -22,10 +23,14 @@ public class AirlineController {
     @Autowired
     private AirlineService airlineService;
 
+    @GetMapping
+    public List<AirlineDTO> findAll(){
+        return airlineAdaptar.getAirlineDTOList(airlineService.getAllAirlines());
+    }
+
     @GetMapping(params = "paged=true")
     public Page<Airline> findAll(Pageable pageable){
         return airlineService.getAllAirlines(pageable);
-
     }
 
     @GetMapping("/by-airport")
@@ -34,14 +39,15 @@ public class AirlineController {
     }
 
     @GetMapping("/{id}")
-    public Airline findById(@PathVariable(name = "id") Long airlineId) {
-        return airlineService.findById(airlineId);
+    public AirlineDTO findById(@PathVariable(name = "id") Long airlineId) {
+
+        return airlineAdaptar.getAirlineDTO(airlineService.findById(airlineId));
     }
 
     @PostMapping
     public Object createAirline(@Valid @RequestBody Airline airline, BindingResult result) {
         if (!result.hasErrors()) {
-            return airlineService.save(airline);
+            return airlineAdaptar.getAirlineDTO(airlineService.save(airline));
         }else{
             return result.getAllErrors();
         }
@@ -52,16 +58,16 @@ public class AirlineController {
                                  @Valid @RequestBody Airline airline, BindingResult result) {
         if (!result.hasErrors()) {
             airline.setId(airlineId);
-            return airlineService.save(airline);
+            return airlineAdaptar.getAirlineDTO(airlineService.save(airline));
         }else{
             return result.getAllErrors();
         }
     }
 
     @DeleteMapping("/{id}")
-    public Airline deleteAirline(@PathVariable(name = "id") Long airlineId){
+    public AirlineDTO deleteAirline(@PathVariable(name = "id") Long airlineId){
         Airline airline=airlineService.findById(airlineId);
         airlineService.delete(airline);
-        return airline;
+        return airlineAdaptar.getAirlineDTO(airline);
     }
 }
