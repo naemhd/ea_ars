@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+
 @Service
 public class EmailService {
     @Autowired
-    JavaMailSender javaMailSender;
+    private JavaMailSender javaMailSender;
+
     public String sendMail(String dataAdmin){
         SimpleMailMessage message=new SimpleMailMessage();
         message.setFrom("samsonramato@gmail.com");

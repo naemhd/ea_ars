@@ -2,6 +2,8 @@ package edu.miu.cs.cs544.ea_ars.controller;
 
 
 import edu.miu.cs.cs544.ea_ars.domain.Reservation;
+import edu.miu.cs.cs544.ea_ars.dto.PassengerAdopter;
+import edu.miu.cs.cs544.ea_ars.dto.ReservationAdopter;
 import edu.miu.cs.cs544.ea_ars.dto.ReservationDTO;
 import edu.miu.cs.cs544.ea_ars.exception.CustomErrorType;
 import edu.miu.cs.cs544.ea_ars.service.ReservationService;
@@ -44,6 +46,11 @@ public class ReservationController {
 
     @PostMapping()
     public ReservationDTO AddReservation(@Valid @RequestBody ReservationDTO reservationDTO) {
+        if (reservationDTO.getPassenger() != null) {
+//            reservationDTO.getPassenger().addReservation(ReservationAdopter.getReservation(reservationDTO));
+            reservationDTO.setPassenger(reservationDTO.getPassenger());
+
+        }
         return reservationService.addReservation(reservationDTO);
     }
 
@@ -55,7 +62,7 @@ public class ReservationController {
         }
 
         reservationService.deleteReservation(id);
-        return new ResponseEntity<Object>("Reservation successfully deleted", HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Object>("Reservation successfully deleted", HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

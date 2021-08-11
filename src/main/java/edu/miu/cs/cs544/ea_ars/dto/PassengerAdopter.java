@@ -5,15 +5,20 @@ import edu.miu.cs.cs544.ea_ars.domain.Reservation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PassengerAdopter {
 
     public static Passenger getPassenger(PassengerDTO passengerDTO) {
         Passenger passenger = new Passenger();
         if (passengerDTO != null) {
-            passenger = new Passenger(passengerDTO.getFirstName(), passengerDTO.getLastName(),passengerDTO.getEmail(),
-                    passengerDTO.getDateOfBirth(), passengerDTO.getAddress(),
-                    ReservationAdopter.getReservationList(passengerDTO.getReservations()));
+           passenger.setId(passengerDTO.getId());
+           passenger.setFirstName(passengerDTO.getFirstName());
+           passenger.setLastName(passengerDTO.getLastName());
+           passenger.setDateOfBirth(passengerDTO.getDateOfBirth());
+           passenger.setEmail(passengerDTO.getEmail());
+           passenger.setAddress(passengerDTO.getAddress());
+           passenger.setReservations(passengerDTO.getReservations());
         }
         return passenger;
     }
@@ -21,20 +26,21 @@ public class PassengerAdopter {
     public static PassengerDTO getPassengerDTO(Passenger passenger) {
         PassengerDTO passengerDTO = new PassengerDTO();
         if (passenger != null) {
-            passengerDTO = new PassengerDTO(passenger.getFirstName(), passenger.getLastName(),passenger.getEmail(),
-                    passenger.getDateOfBirth(), passenger.getAddress(),
-                    ReservationAdopter.getReservationDTOList(passenger.getReservations()));
+            passengerDTO.setId(passenger.getId());
+            passengerDTO.setFirstName(passenger.getFirstName());
+            passengerDTO.setLastName(passenger.getLastName());
+            passengerDTO.setDateOfBirth(passenger.getDateOfBirth());
+            passengerDTO.setEmail(passenger.getEmail());
+            passengerDTO.setAddress(passenger.getAddress());
+            passengerDTO.setReservations(passenger.getReservations());
         }
         return passengerDTO;
     }
 
     public static List<PassengerDTO> getPassengerDTOList(List<Passenger> passengerList) {
-        List<PassengerDTO> passengerDTOList = new ArrayList<>();
-        if (passengerList.size() != 0) {
-            for (Passenger passenger : passengerList) {
-                passengerDTOList.add(PassengerAdopter.getPassengerDTO(passenger));
-            }
-        }
-        return passengerDTOList;
+        return passengerList.stream().map(r->getPassengerDTO(r)).collect(Collectors.toList());
+    }
+    public static List<Passenger> getPassengerList(List<PassengerDTO> passengerDTOList) {
+        return passengerDTOList.stream().map(r->getPassenger(r)).collect(Collectors.toList());
     }
 }
