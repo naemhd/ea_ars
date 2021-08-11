@@ -3,10 +3,7 @@ package edu.miu.cs.cs544.ea_ars.dto;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import edu.miu.cs.cs544.ea_ars.domain.Address;
 import edu.miu.cs.cs544.ea_ars.domain.Reservation;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 
 import javax.validation.constraints.NotEmpty;
@@ -16,10 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@ToString
 public class PassengerDTO {
 
     private Long Id;
@@ -37,29 +32,12 @@ public class PassengerDTO {
 
     private Address address;
 
-//    @JsonManagedReference
-    private List<ReservationDTO> reservations = new ArrayList<>();
+    private List<Reservation> reservations = new ArrayList<>();
 
-    public PassengerDTO(String firstName, String lastName, LocalDate dateOfBirth) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
+    public void addReservation(Reservation reservation) {
+        reservation.setPassenger(PassengerAdopter.getPassenger(this));
+        this.reservations.add(reservation);
     }
-
-    public PassengerDTO(String firstName, String lastName,String email, LocalDate dateOfBirth, Address address, List<ReservationDTO> reservations) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
-        this.reservations = reservations;
-        this.address = address;
-        this.email = email;
-    }
-
-//    Convenience method
-        public void addReservation(ReservationDTO reservation){
-            reservation.setPassenger(PassengerAdopter.getPassenger(this));
-            this.reservations.add(reservation);
-        }
 
 
 }

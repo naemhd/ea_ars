@@ -1,5 +1,6 @@
 package edu.miu.cs.cs544.ea_ars.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @ToString
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Passenger {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,6 +41,7 @@ public class Passenger {
     @Embedded
     private Address address;
 
+    //@ToString.Exclude
     @JsonManagedReference
     @OneToMany(mappedBy = "passenger", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Reservation> reservations = new ArrayList<>();

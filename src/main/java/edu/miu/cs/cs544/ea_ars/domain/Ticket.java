@@ -29,7 +29,7 @@ public class Ticket {
     private Flight flight;
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn
     private Reservation reservation;
 
