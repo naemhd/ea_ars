@@ -2,6 +2,7 @@ package edu.miu.cs.cs544.ea_ars.service;
 
 import edu.miu.cs.cs544.ea_ars.domain.Flight;
 import edu.miu.cs.cs544.ea_ars.dto.DTOModel.FlightDTO;
+import edu.miu.cs.cs544.ea_ars.dto.adapter.DTOAdapter;
 import edu.miu.cs.cs544.ea_ars.dto.adapter.FlightDTOAdapter;
 import edu.miu.cs.cs544.ea_ars.repository.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class FlightServiceImpl implements FlightService {
 
     @Autowired
     private FlightDTOAdapter flightDTOAdapter;
+
+    @Autowired
+    private DTOAdapter dtoAdapter;
 
     @Override
     public List<FlightDTO> findAllFlight(){
@@ -63,6 +67,7 @@ public class FlightServiceImpl implements FlightService {
             flight1.setArrivalTime(flight.getArrivalTime());
             flight1.setCapacity(flight.getCapacity());
 
+//            Flight flight2 = FlightDTOAdapter.dtoToFlight(flight1);
             flightRepository.save(flight1);
         }
         return FlightDTOAdapter.flightDTOAdapter(flight1);
@@ -70,10 +75,9 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public void deleteFlight(String flightNumber) {
-       Flight flight = findFlight(flightNumber);
-        System.out.println(flight);
+       FlightDTO flight = findFlight(flightNumber);
        if(flight!=null){
-           flightRepository.delete(flight);
+           flightRepository.delete(FlightDTOAdapter.dtoToFlight(flight));
        }
     }
 
@@ -83,11 +87,11 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public Flight findFlight(String flightNumber){
+    public FlightDTO findFlight(String flightNumber){
         if(flightRepository.existsByFlightNumber(flightNumber)){
-            return flightRepository.findByFlightNumber(flightNumber);
+            return FlightDTOAdapter.flightDTOAdapter(flightRepository.findByFlightNumber(flightNumber));
         }
-        return new Flight();
+        return new FlightDTO();
     }
 
     @Override
