@@ -12,23 +12,24 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @ToString
-@Table(name="UsersTable")
+@Table(name = "UsersTable")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String username;
+     private String username;
 
     private String password;
 
-    @Enumerated(value=EnumType.STRING)
-    @Column(name="role",columnDefinition = "text",length = 15)
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "role", columnDefinition = "text", length = 15)
     private UserRole role;
 
-    private boolean isEnabled;
 
-    public User(String username, String password, UserRole role, boolean isEnabled) {
+    private Boolean isEnabled;
+
+    public User(String username, String password, UserRole role, Boolean isEnabled) {
         this.username = username;
         this.password = password;
         this.role = role;

@@ -1,14 +1,17 @@
 package edu.miu.cs.cs544.ea_ars.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 
 public class UserPrincipal implements UserDetails {
-    User user;
+    @Autowired
+    private User user;
 
     public UserPrincipal(User user) {
         super();
@@ -17,7 +20,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("USER"), new SimpleGrantedAuthority("ADMIN"));
+        return Arrays.asList(new SimpleGrantedAuthority(user.getRole().name()));
     }
 
     @Override
@@ -47,6 +50,16 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;//user.isEnabled();
+        return user.getIsEnabled();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object)
+            return true;
+        if (object == null || getClass() != object.getClass())
+            return false;
+        UserPrincipal user = (UserPrincipal) object;
+        return Objects.equals(getUsername(), user.getUsername());
     }
 }

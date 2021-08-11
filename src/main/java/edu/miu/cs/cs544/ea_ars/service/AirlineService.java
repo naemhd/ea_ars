@@ -1,14 +1,12 @@
 package edu.miu.cs.cs544.ea_ars.service;
 
 import edu.miu.cs.cs544.ea_ars.domain.Airline;
+import edu.miu.cs.cs544.ea_ars.repository.AirlineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import edu.miu.cs.cs544.ea_ars.repository.AirlineRepository;
-
-import java.util.List;
 
 @Service
 @Transactional

@@ -2,23 +2,15 @@ package edu.miu.cs.cs544.ea_ars.dto.adapter;
 
 import edu.miu.cs.cs544.ea_ars.domain.Flight;
 import edu.miu.cs.cs544.ea_ars.dto.DTOModel.FlightDTO;
-import edu.miu.cs.cs544.ea_ars.service.FlightService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
 public class FlightDTOAdapter {
 
-    @Autowired
-    private FlightService flightService;
-
-    public static FlightDTO flightDTOAdapter(Flight flight){
+    public static FlightDTO flightDTOAdapter(Flight flight) {
 
         FlightDTO flightdto = new FlightDTO();
         flightdto.setFlightNumber(flight.getFlightNumber());
@@ -34,13 +26,13 @@ public class FlightDTOAdapter {
         return flightdto;
     }
 
-    public static List<FlightDTO> flightsDTOAdapter(List<Flight> flights){
-        return (flights.stream().map(flight->flightDTOAdapter(flight)).collect(Collectors.toList()));
+    public static List<FlightDTO> flightsDTOAdapter(List<Flight> flights) {
+        return (flights.stream().map(flight -> flightDTOAdapter(flight)).collect(Collectors.toList()));
     }
 
-    public static  Flight dtoToFlight(FlightDTO flightDTO){
+    public static Flight dtoToFlight(FlightDTO flightDTO) {
 
-        Flight flight=new Flight();
+        Flight flight = new Flight();
 
         flight.setFlightNumber(flightDTO.getFlightNumber());
         flight.setCapacity(flightDTO.getCapacity());

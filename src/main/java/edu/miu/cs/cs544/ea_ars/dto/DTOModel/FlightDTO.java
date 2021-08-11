@@ -2,18 +2,11 @@ package edu.miu.cs.cs544.ea_ars.dto.DTOModel;
 
 import edu.miu.cs.cs544.ea_ars.domain.Airline;
 import edu.miu.cs.cs544.ea_ars.domain.Airport;
-import edu.miu.cs.cs544.ea_ars.domain.Ticket;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
