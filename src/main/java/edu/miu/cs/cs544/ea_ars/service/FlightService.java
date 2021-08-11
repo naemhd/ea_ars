@@ -13,7 +13,7 @@ public interface FlightService {
     List<FlightDTO> findAllFlight();
     Page<Flight> findAllFlight(Pageable pageable);
     boolean existsByFlightNumber(String flightNumber);
-    Flight findFlight(String flightNumber);
+    FlightDTO findFlight(String flightNumber);
 
     boolean saveFlight(FlightDTO flight);
     void saveFlights(Set<FlightDTO> flights);
