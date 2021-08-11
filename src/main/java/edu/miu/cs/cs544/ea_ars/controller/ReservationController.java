@@ -44,14 +44,14 @@ public class ReservationController {
         return new ResponseEntity<ReservationDTO>(reservationDTO, HttpStatus.OK);
     }
 
-    @PostMapping()
-    public ReservationDTO AddReservation(@Valid @RequestBody ReservationDTO reservationDTO) {
+    @PostMapping("/{flightNumber}")
+    public ReservationDTO AddReservation(@Valid @RequestBody ReservationDTO reservationDTO,@PathVariable  String flightNumber) {
         if (reservationDTO.getPassenger() != null) {
 //            reservationDTO.getPassenger().addReservation(ReservationAdopter.getReservation(reservationDTO));
             reservationDTO.setPassenger(reservationDTO.getPassenger());
 
         }
-        return reservationService.addReservation(reservationDTO);
+        return reservationService.addReservation(reservationDTO, flightNumber);
     }
 
     @DeleteMapping("/{id}")

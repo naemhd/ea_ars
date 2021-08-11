@@ -53,6 +53,13 @@ public class FlightServiceImpl implements FlightService {
     public void saveFlights(Set<FlightDTO> flights){
         flights.forEach(flight -> saveFlight(flight));
     }
+    
+    public void updateCapacity(String fn,int capacity) {
+    	Flight flight1 = flightRepository.findByFlightNumber(fn);
+    	flight1.setCapacity(capacity);
+    	 flightRepository.save(flight1);
+    	
+    }
 
     @Override
     public FlightDTO updateFlight(FlightDTO flight) {
@@ -92,6 +99,11 @@ public class FlightServiceImpl implements FlightService {
             return FlightDTOAdapter.flightDTOAdapter(flightRepository.findByFlightNumber(flightNumber));
         }
         return new FlightDTO();
+    }
+    
+    @Override
+    public Flight findFlightByNumber(String flightNumber){
+    	return flightRepository.findByFlightNumber(flightNumber);
     }
 
     @Override
