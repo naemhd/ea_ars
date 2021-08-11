@@ -33,7 +33,7 @@ public class Reservation {
 
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "reservation", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "reservation", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Ticket> tickets = new HashSet<>();
 
     @JsonBackReference
