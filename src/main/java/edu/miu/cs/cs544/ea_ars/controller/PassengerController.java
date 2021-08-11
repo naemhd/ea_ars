@@ -103,7 +103,7 @@ public class PassengerController {
         // reservation.setPassenger(passenger);
 //        for (Reservation reservation : passengerDTO.getReservations()) {
 //            reservation.setPassenger(PassengerAdopter.getPassenger(passengerDTO));
-        passenger.addReservation()
+        passenger.addReservation(ReservationAdopter.getReservation(reservation));
         System.out.println(reservation);
         System.out.println(passenger);
         PassengerDTO passengerDTO = PassengerAdopter.getPassengerDTO(passenger);

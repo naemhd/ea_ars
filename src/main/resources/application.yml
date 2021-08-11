@@ -23,4 +23,4 @@ spring:
 
 # App Properties
 #spring.security.user.password: Test12345_
-ea.ars.app: ea_ars.app
+ea.ars.app: ea_ars
