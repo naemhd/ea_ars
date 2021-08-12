@@ -56,11 +56,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/api/flights/**").hasAnyAuthority("ROLE_ADMIN")
-                .antMatchers(HttpMethod.GET).permitAll()
-                .antMatchers("/api/users/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/airlines","/api/airports","/api/flights").permitAll()
+                .antMatchers("/api/**").hasAnyAuthority("ROLE_ADMIN")
+                .antMatchers("/api/reservations","/api/passengers").hasAnyAuthority("ROLE_AGENT")
+                .antMatchers("/api/reservations","/api/passenger").hasAnyAuthority("ROLE_PASSENGER")
                 .anyRequest().authenticated();
-
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }

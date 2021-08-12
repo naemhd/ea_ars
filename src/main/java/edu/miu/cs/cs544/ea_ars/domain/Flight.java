@@ -1,5 +1,6 @@
 package edu.miu.cs.cs544.ea_ars.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -35,6 +36,7 @@ public class Flight {
 
 	private LocalTime arrivalTime;
 
+	@JsonBackReference
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Airline airline;
 	

@@ -1,258 +1,946 @@
 {
 	"info": {
-		"_postman_id": "0e6de58d-83b4-400f-864f-bfb5f6360d33",
-		"name": "ARS",
+		"_postman_id": "d1476e66-52ea-4b5b-8841-79193e24fcc1",
+		"name": "EA",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "localhost:8080/api/users",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\":\"wonde\",\r\n    \"password\":\"wonde\",\r\n    \"role\":{\r\n        \"role\":\"ADMIN\"\r\n    },\r\n    \"isEnabled\":\"true\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Airlines",
+			"item": [
+				{
+					"name": "Get all airlines",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/airlines?paged=true",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"airlines"
+							],
+							"query": [
+								{
+									"key": "paged",
+									"value": "true"
+								}
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:8080/api/users",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/api/users",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\":\"wonde\",\r\n    \"password\":\"wonde\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Get one airline",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/airlines/1",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"airlines",
+								"1"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:8080/api/users",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/api/flights",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"arrivalDate\":\"2021-01-01\",\r\n    \"arrivalTime\":\"06:00\",\r\n    \"capacity\":\"10\",\r\n    \"departureDate\":\"2021-01-01\",\r\n    \"departureTime\":\"12:00\",\r\n    \"flightNumber\":\"12345\",\r\n    \"airline\":{\r\n        \"code\":\"AU\",\r\n        \"name\":\"United Airlines\",\r\n        \"history\":\"history\"\r\n    },\r\n    \"destination\":{\r\n        \"address\":{\r\n            \"city\":\"fairfield\",\r\n            \"state\":\"IA\",\r\n            \"street\":\"1000 N 4th\",\r\n            \"zipCode\":\"52557\"\r\n        },\r\n        \"airportCode\":\"CID\",\r\n        \"name\":\"Eastern Iowa Airport\"\r\n    },\r\n    \"origin\":{\r\n        \"address\":{\r\n            \"city\":\"Royneldsburg\",\r\n            \"state\":\"OH\",\r\n            \"street\":\"12540 S 2th\",\r\n            \"zipCode\":\"12325\"\r\n        },\r\n        \"airportCode\":\"OCD\",\r\n        \"name\":\"Columbus Airport\"\r\n    }\r\n}\r\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8080/api/flights",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"flights"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/api/flights/12345",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8080/api/flights/12345",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"flights",
-						"12345"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/api/flights",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"arrivalDate\":\"2021-01-02\",\r\n    \"arrivalTime\":\"06:10\",\r\n    \"capacity\":\"10\",\r\n    \"departureDate\":\"2021-02-02\",\r\n    \"departureTime\":\"12:30\",\r\n    \"flightNumber\":\"12345\",\r\n    \"airline\":{\r\n        \"code\":\"AU\",\r\n        \"name\":\"United Airlines\",\r\n        \"history\":\"history\"\r\n    },\r\n    \"destination\":{\r\n        \"address\":{\r\n            \"city\":\"fairfield\",\r\n            \"state\":\"IA\",\r\n            \"street\":\"1000 N 4th\",\r\n            \"zipCode\":\"52557\"\r\n        },\r\n        \"airportCode\":\"CID\",\r\n        \"name\":\"Eastern Iowa Airport\"\r\n    },\r\n    \"origin\":{\r\n        \"address\":{\r\n            \"city\":\"Royneldsburg\",\r\n            \"state\":\"OH\",\r\n            \"street\":\"12540 S 2th\",\r\n            \"zipCode\":\"12325\"\r\n        },\r\n        \"airportCode\":\"OCD\",\r\n        \"name\":\"Columbus Airport\"\r\n    }\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8080/api/flights",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"flights"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/api/flights/12345",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/api/flights/12345",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"flights",
-						"12345"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/api/flights/all",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "[\r\n    {\r\n\t\t\"arrivalDate\":\"2021-01-01\",\r\n\t\t\"arrivalTime\":\"06:00\",\r\n\t\t\"capacity\":\"10\",\r\n\t\t\"departureDate\":\"2021-01-01\",\r\n\t\t\"departureTime\":\"12:00\",\r\n\t\t\"flightNumber\":\"12345\",\r\n\t\t\"airline\":{\r\n\t\t\t\"code\":\"AU\",\r\n\t\t\t\"name\":\"United Airlines\",\r\n\t\t\t\"history\":\"history\"\r\n\t\t},\r\n\t\t\"destination\":{\r\n\t\t\t\"address\":{\r\n\t\t\t\t\"city\":\"fairfield\",\r\n\t\t\t\t\"state\":\"IA\",\r\n\t\t\t\t\"street\":\"1000 N 4th\",\r\n\t\t\t\t\"zipCode\":\"52557\"\r\n\t\t\t},\r\n\t\t\t\"airportCode\":\"CID\",\r\n\t\t\t\"name\":\"Eastern Iowa Airport\"\r\n\t\t},\r\n\t\t\"origin\":{\r\n\t\t\t\"address\":{\r\n\t\t\t\t\"city\":\"Royneldsburg\",\r\n\t\t\t\t\"state\":\"OH\",\r\n\t\t\t\t\"street\":\"12540 S 2th\",\r\n\t\t\t\t\"zipCode\":\"12325\"\r\n\t\t\t},\r\n\t\t\t\"airportCode\":\"OCD\",\r\n\t\t\t\"name\":\"Columbus Airport\"\r\n\t\t}\r\n\t},\r\n\t{\r\n\t\t\"arrivalDate\":\"2021-02-01\",\r\n\t\t\"arrivalTime\":\"02:00\",\r\n\t\t\"capacity\":\"20\",\r\n\t\t\"departureDate\":\"2021-02-01\",\r\n\t\t\"departureTime\":\"12:00\",\r\n\t\t\"flightNumber\":\"12346\",\r\n\t\t\"airline\":{\r\n\t\t\t\"code\":\"AU\",\r\n\t\t\t\"name\":\"United Airlines\",\r\n\t\t\t\"history\":\"history\"\r\n\t\t},\r\n\t\t\"destination\":{\r\n\t\t\t\"address\":{\r\n\t\t\t\t\"city\":\"Addis Ababa\",\r\n\t\t\t\t\"state\":\"ETH\",\r\n\t\t\t\t\"street\":\"BIA\",\r\n\t\t\t\t\"zipCode\":\"001\"\r\n\t\t\t},\r\n\t\t\t\"airportCode\":\"BIA\",\r\n\t\t\t\"name\":\"Bole International airport\"\r\n\t\t},\r\n\t\t\"origin\":{\r\n\t\t\t\"address\":{\r\n\t\t\t\t\"city\":\"Fairfield\",\r\n\t\t\t\t\"state\":\"IA\",\r\n\t\t\t\t\"street\":\"10000 S 2th\",\r\n\t\t\t\t\"zipCode\":\"21215\"\r\n\t\t\t},\r\n\t\t\t\"airportCode\":\"CID\",\r\n\t\t\t\"name\":\"Eastern Iowa Airport\"\r\n\t\t}\r\n\t},\r\n\t{\r\n\t\t\"arrivalDate\":\"2021-02-01\",\r\n\t\t\"arrivalTime\":\"02:00\",\r\n\t\t\"capacity\":\"30\",\r\n\t\t\"departureDate\":\"2021-02-01\",\r\n\t\t\"departureTime\":\"06:00\",\r\n\t\t\"flightNumber\":\"12347\",\r\n\t\t\"airline\":{\r\n\t\t\t\"code\":\"ETH\",\r\n\t\t\t\"name\":\"Ethiopian Airlines\",\r\n\t\t\t\"history\":\"Ethiopian Airlines history\"\r\n\t\t},\r\n\t\t  \"destination\":{\r\n\t\t\t\"address\":{\r\n\t\t\t\t\"city\":\"Addis Ababa\",\r\n\t\t\t\t\"state\":\"ETH\",\r\n\t\t\t\t\"street\":\"BIA\",\r\n\t\t\t\t\"zipCode\":\"001\"\r\n\t\t\t},\r\n\t\t\t\"airportCode\":\"BIA\",\r\n\t\t\t\"name\":\"Bole International airport\"\r\n\t\t},\r\n\t\t\"origin\":{\r\n\t\t\t\"address\":{\r\n\t\t\t\t\"city\":\"Fairfield\",\r\n\t\t\t\t\"state\":\"IA\",\r\n\t\t\t\t\"street\":\"10000 S 2th\",\r\n\t\t\t\t\"zipCode\":\"21215\"\r\n\t\t\t},\r\n\t\t\t\"airportCode\":\"CID\",\r\n\t\t\t\"name\":\"Eastern Iowa Airport\"\r\n\t\t}\r\n\t}\r\n]",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8080/api/flights/all",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"flights",
-						"all"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/api/flights",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/api/flights",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"flights"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/api/flights/direct?from=OCD&to=CID&flightDate=2021-01-01",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/api/flights/direct?from=OCD&to=CID&flightDate=2021-01-01",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"flights",
-						"direct"
-					],
-					"query": [
-						{
-							"key": "from",
-							"value": "OCD"
+				{
+					"name": "Create a new airline",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\":\"456\",\r\n    \"name\":\"American airlines\",\r\n    \"history\":\"airline has a long history\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						{
-							"key": "to",
-							"value": "CID"
-						},
-						{
-							"key": "flightDate",
-							"value": "2021-01-01"
+						"url": {
+							"raw": "{{endpoint}}/api/airlines",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"airlines"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "update an airline",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWVtIiwiaWF0IjoxNjI4NzExMTMwLCJleHAiOjE2Mjg3OTc1MzB9.OGaLB8XjyIUvxmP4ebn8PPFv46NWoE-A1YR5ptQ_-rkmeL3QqbpZbM26WXSZOB9MoWsXnUadhLpQUpJR_FlZTA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\":\"ASC\",\r\n    \"name\":\"JetBlue1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/airlines/1",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"airlines",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an airline",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWVtIiwiaWF0IjoxNjI4NzExMTMwLCJleHAiOjE2Mjg3OTc1MzB9.OGaLB8XjyIUvxmP4ebn8PPFv46NWoE-A1YR5ptQ_-rkmeL3QqbpZbM26WXSZOB9MoWsXnUadhLpQUpJR_FlZTA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/airlines/1",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"airlines",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all airlines by airport",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/airlines/by-airport?paged=true&airportCode=OCD",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"airlines",
+								"by-airport"
+							],
+							"query": [
+								{
+									"key": "paged",
+									"value": "true"
+								},
+								{
+									"key": "airportCode",
+									"value": "OCD"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "Airports",
+			"item": [
+				{
+					"name": "Get all airport",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/airports",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"airports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get airport by Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"airportCode\": \"BAD\",\n    \"name\": \"Bole\",\n    \"address\": {\n        \"street\": \"10000\",\n        \"city\": \"cedar\",\n        \"state\": \"Iowa\",\n        \"zipCode\": \"52557\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/airports/1",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"airports",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Airport using using put",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWVtIiwiaWF0IjoxNjI4NzExMTMwLCJleHAiOjE2Mjg3OTc1MzB9.OGaLB8XjyIUvxmP4ebn8PPFv46NWoE-A1YR5ptQ_-rkmeL3QqbpZbM26WXSZOB9MoWsXnUadhLpQUpJR_FlZTA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"airportCode\": \"GGG\",\n    \"name\": \"Bole bole\",\n    \"address\": {\n        \"street\": \"10000\",\n        \"city\": \"cedar\",\n        \"state\": \"Iowa\",\n        \"zipCode\": \"52557\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/airports/1",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"airports",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add airport using post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWVtIiwiaWF0IjoxNjI4NzExMTMwLCJleHAiOjE2Mjg3OTc1MzB9.OGaLB8XjyIUvxmP4ebn8PPFv46NWoE-A1YR5ptQ_-rkmeL3QqbpZbM26WXSZOB9MoWsXnUadhLpQUpJR_FlZTA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"airportCode\":\"JFK\",\n    \"name\":\"jfk airport\",\n    \"address\":{\n        \"street\":\"10000\",\n        \"city\":\"cedar\",\n        \"state\":\"Iowa\",\n        \"zipCode\":\"52557\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/airports",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"airports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete airlport using id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWVtIiwiaWF0IjoxNjI4NzExMTMwLCJleHAiOjE2Mjg3OTc1MzB9.OGaLB8XjyIUvxmP4ebn8PPFv46NWoE-A1YR5ptQ_-rkmeL3QqbpZbM26WXSZOB9MoWsXnUadhLpQUpJR_FlZTA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/airports/1",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"airports",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Passengers",
+			"item": [
+				{
+					"name": "Get all passengers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/passengers",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"passengers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create passenger",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWVtIiwiaWF0IjoxNjI4NzExMTMwLCJleHAiOjE2Mjg3OTc1MzB9.OGaLB8XjyIUvxmP4ebn8PPFv46NWoE-A1YR5ptQ_-rkmeL3QqbpZbM26WXSZOB9MoWsXnUadhLpQUpJR_FlZTA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Jack\",\r\n    \"lastName\": \"Jill\",\r\n    \"dateOfBirth\": \"1999-01-01\",\r\n    \"email\": \"samsonahmed@miu.edu\",\r\n    \"address\": {\r\n        \"street\": \"1000 n 4th\",\r\n        \"city\": \"Chicago\",\r\n        \"state\": \"Illinois\",\r\n        \"zipCode\": \"52555\"\r\n    },\r\n    \"reservations\": [{\r\n    \"reservationCode\": \"852852\",\r\n    \"reservationDate\": \"2021-08-08\",\r\n    \"reservedBy\": null,\r\n    \"tickets\": [],\r\n    \"paid\": false\r\n    \r\n    }]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/passengers",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"passengers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one passenger",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/passengers/3",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"passengers",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update passenger",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWVtIiwiaWF0IjoxNjI4NzExMTMwLCJleHAiOjE2Mjg3OTc1MzB9.OGaLB8XjyIUvxmP4ebn8PPFv46NWoE-A1YR5ptQ_-rkmeL3QqbpZbM26WXSZOB9MoWsXnUadhLpQUpJR_FlZTA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Jack\",\r\n    \"lastName\": \"Jack\",\r\n    \"dateOfBirth\": \"1999-01-01\",\r\n    \"email\": \"jack@gmail.com\",\r\n    \"address\": {\r\n        \"street\": \"1000 n 4th\",\r\n        \"city\": \"Chicago\",\r\n        \"state\": \"Illinois\",\r\n        \"zipCode\": \"52555\"\r\n    },\r\n    \"reservations\": [\r\n        {\r\n            \"id\": 36,\r\n            \"reservationCode\": \"88888\",\r\n            \"reservationDate\": \"2021-08-08\",\r\n            \"reservedBy\": null,\r\n            \"tickets\": [],\r\n            \"paid\": false\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/passengers/3",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"passengers",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete passenger",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWVtIiwiaWF0IjoxNjI4NzExMTMwLCJleHAiOjE2Mjg3OTc1MzB9.OGaLB8XjyIUvxmP4ebn8PPFv46NWoE-A1YR5ptQ_-rkmeL3QqbpZbM26WXSZOB9MoWsXnUadhLpQUpJR_FlZTA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/passengers/3",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"passengers",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get passenger reservations",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWVtIiwiaWF0IjoxNjI4NzExMTMwLCJleHAiOjE2Mjg3OTc1MzB9.OGaLB8XjyIUvxmP4ebn8PPFv46NWoE-A1YR5ptQ_-rkmeL3QqbpZbM26WXSZOB9MoWsXnUadhLpQUpJR_FlZTA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/passengers/3/reservations",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"passengers",
+								"3",
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get resevation details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/passengers/3/reservations/2",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"passengers",
+								"3",
+								"reservations",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reservations",
+			"item": [
+				{
+					"name": "Create reservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWVtIiwiaWF0IjoxNjI4NzExMTMwLCJleHAiOjE2Mjg3OTc1MzB9.OGaLB8XjyIUvxmP4ebn8PPFv46NWoE-A1YR5ptQ_-rkmeL3QqbpZbM26WXSZOB9MoWsXnUadhLpQUpJR_FlZTA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{ \"reservationCode\": \"999999\",\n        \"reservationDate\": \"2021-08-08\",\n        \"reservedBy\": null,\n        \"tickets\": [],\n        \"passenger\": {\n            \"firstName\": \"Jack\",\n            \"lastName\": \"Jack\",\n            \"dateOfBirth\": \"1999-01-01\",\n            \"email\": \"jack@gmail.com\",\n            \"address\": {\n                \"street\": \"1000 n 4th\",\n                \"city\": \"Chicago\",\n                \"state\": \"Illinois\",\n                \"zipCode\": \"52555\"\n            }\n            }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/reservations",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete reservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWVtIiwiaWF0IjoxNjI4NzExMTMwLCJleHAiOjE2Mjg3OTc1MzB9.OGaLB8XjyIUvxmP4ebn8PPFv46NWoE-A1YR5ptQ_-rkmeL3QqbpZbM26WXSZOB9MoWsXnUadhLpQUpJR_FlZTA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/reservations/2",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"reservations",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single reservation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/reservations/2",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"reservations",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Flights",
+			"item": [
+				{
+					"name": "Get all flights",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWVtIiwiaWF0IjoxNjI4NzExMTMwLCJleHAiOjE2Mjg3OTc1MzB9.OGaLB8XjyIUvxmP4ebn8PPFv46NWoE-A1YR5ptQ_-rkmeL3QqbpZbM26WXSZOB9MoWsXnUadhLpQUpJR_FlZTA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/flights",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"flights"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create flight",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWVtIiwiaWF0IjoxNjI4NzExMTMwLCJleHAiOjE2Mjg3OTc1MzB9.OGaLB8XjyIUvxmP4ebn8PPFv46NWoE-A1YR5ptQ_-rkmeL3QqbpZbM26WXSZOB9MoWsXnUadhLpQUpJR_FlZTA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"arrivalDate\":\"2021-01-01\",\r\n    \"arrivalTime\":\"06:00\",\r\n    \"capacity\":\"10\",\r\n    \"departureDate\":\"2021-01-01\",\r\n    \"departureTime\":\"12:00\",\r\n    \"flightNumber\":\"12345\",\r\n    \"airline\":{\r\n        \"code\":\"AU\",\r\n        \"name\":\"United Airlines\",\r\n        \"history\":\"history\"\r\n    },\r\n    \"destination\":{\r\n        \"address\":{\r\n            \"city\":\"fairfield\",\r\n            \"state\":\"IA\",\r\n            \"street\":\"1000 N 4th\",\r\n            \"zipCode\":\"52557\"\r\n        },\r\n        \"airportCode\":\"CID\",\r\n        \"name\":\"Eastern Iowa Airport\"\r\n    },\r\n    \"origin\":{\r\n        \"address\":{\r\n            \"city\":\"Royneldsburg\",\r\n            \"state\":\"OH\",\r\n            \"street\":\"12540 S 2th\",\r\n            \"zipCode\":\"12325\"\r\n        },\r\n        \"airportCode\":\"OCD\",\r\n        \"name\":\"Columbus Airport\"\r\n    }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/flights",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"flights"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one flight",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWVtIiwiaWF0IjoxNjI4NzExMTMwLCJleHAiOjE2Mjg3OTc1MzB9.OGaLB8XjyIUvxmP4ebn8PPFv46NWoE-A1YR5ptQ_-rkmeL3QqbpZbM26WXSZOB9MoWsXnUadhLpQUpJR_FlZTA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/flights/12345",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"flights",
+								"12345"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update flight",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"arrivalDate\":\"2021-01-02\",\r\n    \"arrivalTime\":\"06:10\",\r\n    \"capacity\":\"10\",\r\n    \"departureDate\":\"2021-02-02\",\r\n    \"departureTime\":\"12:30\",\r\n    \"flightNumber\":\"12345\",\r\n    \"airline\":{\r\n        \"code\":\"AU\",\r\n        \"name\":\"United Airlines\",\r\n        \"history\":\"history\"\r\n    },\r\n    \"destination\":{\r\n        \"address\":{\r\n            \"city\":\"fairfield\",\r\n            \"state\":\"IA\",\r\n            \"street\":\"1000 N 4th\",\r\n            \"zipCode\":\"52557\"\r\n        },\r\n        \"airportCode\":\"CID\",\r\n        \"name\":\"Eastern Iowa Airport\"\r\n    },\r\n    \"origin\":{\r\n        \"address\":{\r\n            \"city\":\"Royneldsburg\",\r\n            \"state\":\"OH\",\r\n            \"street\":\"12540 S 2th\",\r\n            \"zipCode\":\"12325\"\r\n        },\r\n        \"airportCode\":\"OCD\",\r\n        \"name\":\"Columbus Airport\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/flights",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"flights"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete flight",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWVtIiwiaWF0IjoxNjI4NzExMTMwLCJleHAiOjE2Mjg3OTc1MzB9.OGaLB8XjyIUvxmP4ebn8PPFv46NWoE-A1YR5ptQ_-rkmeL3QqbpZbM26WXSZOB9MoWsXnUadhLpQUpJR_FlZTA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/flights/12345",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"flights",
+								"12345"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save multiple flights",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWVtIiwiaWF0IjoxNjI4NzExMTMwLCJleHAiOjE2Mjg3OTc1MzB9.OGaLB8XjyIUvxmP4ebn8PPFv46NWoE-A1YR5ptQ_-rkmeL3QqbpZbM26WXSZOB9MoWsXnUadhLpQUpJR_FlZTA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n\t\t\"arrivalDate\":\"2021-01-01\",\r\n\t\t\"arrivalTime\":\"06:00\",\r\n\t\t\"capacity\":\"10\",\r\n\t\t\"departureDate\":\"2021-01-01\",\r\n\t\t\"departureTime\":\"12:00\",\r\n\t\t\"flightNumber\":\"12345\",\r\n\t\t\"airline\":{\r\n\t\t\t\"code\":\"AU\",\r\n\t\t\t\"name\":\"United Airlines\",\r\n\t\t\t\"history\":\"history\"\r\n\t\t},\r\n\t\t\"destination\":{\r\n\t\t\t\"address\":{\r\n\t\t\t\t\"city\":\"fairfield\",\r\n\t\t\t\t\"state\":\"IA\",\r\n\t\t\t\t\"street\":\"1000 N 4th\",\r\n\t\t\t\t\"zipCode\":\"52557\"\r\n\t\t\t},\r\n\t\t\t\"airportCode\":\"CID\",\r\n\t\t\t\"name\":\"Eastern Iowa Airport\"\r\n\t\t},\r\n\t\t\"origin\":{\r\n\t\t\t\"address\":{\r\n\t\t\t\t\"city\":\"Royneldsburg\",\r\n\t\t\t\t\"state\":\"OH\",\r\n\t\t\t\t\"street\":\"12540 S 2th\",\r\n\t\t\t\t\"zipCode\":\"12325\"\r\n\t\t\t},\r\n\t\t\t\"airportCode\":\"OCD\",\r\n\t\t\t\"name\":\"Columbus Airport\"\r\n\t\t}\r\n\t},\r\n\t{\r\n\t\t\"arrivalDate\":\"2021-02-01\",\r\n\t\t\"arrivalTime\":\"02:00\",\r\n\t\t\"capacity\":\"20\",\r\n\t\t\"departureDate\":\"2021-02-01\",\r\n\t\t\"departureTime\":\"12:00\",\r\n\t\t\"flightNumber\":\"12346\",\r\n\t\t\"airline\":{\r\n\t\t\t\"code\":\"AU\",\r\n\t\t\t\"name\":\"United Airlines\",\r\n\t\t\t\"history\":\"history\"\r\n\t\t},\r\n\t\t\"destination\":{\r\n\t\t\t\"address\":{\r\n\t\t\t\t\"city\":\"Addis Ababa\",\r\n\t\t\t\t\"state\":\"ETH\",\r\n\t\t\t\t\"street\":\"BIA\",\r\n\t\t\t\t\"zipCode\":\"001\"\r\n\t\t\t},\r\n\t\t\t\"airportCode\":\"BIA\",\r\n\t\t\t\"name\":\"Bole International airport\"\r\n\t\t},\r\n\t\t\"origin\":{\r\n\t\t\t\"address\":{\r\n\t\t\t\t\"city\":\"Fairfield\",\r\n\t\t\t\t\"state\":\"IA\",\r\n\t\t\t\t\"street\":\"10000 S 2th\",\r\n\t\t\t\t\"zipCode\":\"21215\"\r\n\t\t\t},\r\n\t\t\t\"airportCode\":\"CID\",\r\n\t\t\t\"name\":\"Eastern Iowa Airport\"\r\n\t\t}\r\n\t},\r\n\t{\r\n\t\t\"arrivalDate\":\"2021-02-01\",\r\n\t\t\"arrivalTime\":\"02:00\",\r\n\t\t\"capacity\":\"30\",\r\n\t\t\"departureDate\":\"2021-02-01\",\r\n\t\t\"departureTime\":\"06:00\",\r\n\t\t\"flightNumber\":\"12347\",\r\n\t\t\"airline\":{\r\n\t\t\t\"code\":\"ETH\",\r\n\t\t\t\"name\":\"Ethiopian Airlines\",\r\n\t\t\t\"history\":\"Ethiopian Airlines history\"\r\n\t\t},\r\n\t\t  \"destination\":{\r\n\t\t\t\"address\":{\r\n\t\t\t\t\"city\":\"Addis Ababa\",\r\n\t\t\t\t\"state\":\"ETH\",\r\n\t\t\t\t\"street\":\"BIA\",\r\n\t\t\t\t\"zipCode\":\"001\"\r\n\t\t\t},\r\n\t\t\t\"airportCode\":\"BIA\",\r\n\t\t\t\"name\":\"Bole International airport\"\r\n\t\t},\r\n\t\t\"origin\":{\r\n\t\t\t\"address\":{\r\n\t\t\t\t\"city\":\"Fairfield\",\r\n\t\t\t\t\"state\":\"IA\",\r\n\t\t\t\t\"street\":\"10000 S 2th\",\r\n\t\t\t\t\"zipCode\":\"21215\"\r\n\t\t\t},\r\n\t\t\t\"airportCode\":\"CID\",\r\n\t\t\t\"name\":\"Eastern Iowa Airport\"\r\n\t\t}\r\n\t}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/flights/all",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"flights",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search for flights",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYWVtIiwiaWF0IjoxNjI4NzExMTMwLCJleHAiOjE2Mjg3OTc1MzB9.OGaLB8XjyIUvxmP4ebn8PPFv46NWoE-A1YR5ptQ_-rkmeL3QqbpZbM26WXSZOB9MoWsXnUadhLpQUpJR_FlZTA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/flights/direct?from=OCD&to=CID&flightDate=2021-01-01",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"flights",
+								"direct"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "OCD"
+								},
+								{
+									"key": "to",
+									"value": "CID"
+								},
+								{
+									"key": "flightDate",
+									"value": "2021-01-01"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"wonde\",\r\n    \"password\":\"wonde\",\r\n    \"role\":\"ROLE_ADMIN\",\r\n    \"isEnabled\":\"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/auth/users",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"naem\",\r\n    \"password\":\"naem\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/auth/users",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

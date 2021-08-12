@@ -1,5 +1,6 @@
 package edu.miu.cs.cs544.ea_ars.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,6 +31,7 @@ public class Airline {
 	@Column(table = "AirlineHistory", length = 2000)
 	private String history;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "airline")
 	private Set<Flight> flights = new HashSet<>();
 

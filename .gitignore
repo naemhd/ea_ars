@@ -20,6 +20,8 @@ target/
 *.ipr
 *.yml
 
+/src/main/java/edu/miu/cs/cs544/ea_ars/controller/PassengerController.java
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

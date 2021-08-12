@@ -26,14 +26,24 @@ public class FlightController {
     private FlightServiceImpl flightService;
 
     @GetMapping
-    public List<FlightDTO> findAllFlights() {
-        return flightService.findAllFlight();
+    public ResponseEntity<?> findAllFlights() {
+        List<FlightDTO> flight = flightService.findAllFlight();
+        if (flight != null) {
+            return ResponseEntity.ok().body(flight);
+        } else {
+            return ResponseEntity.badRequest().body("No flight");
+        }
     }
 
     //    Get pageable list of flights
     @GetMapping(params = "paged=true")
     public Page<Flight> findAllFlights(Pageable pageable) {
-        return flightService.findAllFlight(pageable);
+        Page<Flight> flights = flightService.findAllFlight(pageable);
+        if (flights != null) {
+            return flightService.findAllFlight(pageable);
+        } else {
+            return null;
+        }
     }
 
     //    Get single flight
@@ -50,15 +60,10 @@ public class FlightController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<?> saveFlight(@RequestBody FlightDTO flightRequestEntity, BindingResult result) {
-        //security check
-        try {
-            if (!result.hasErrors() && flightService.saveFlight(flightRequestEntity)) {
-                return ResponseEntity.ok().body("Successfully Saved!");
-            } else {
-                return ResponseEntity.ok().body("Data not saved " + result.toString());
-            }
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(result.getAllErrors());
+        if (!result.hasErrors() && flightService.saveFlight(flightRequestEntity)) {
+            return ResponseEntity.ok().body("Successfully Saved!");
+        } else {
+            return ResponseEntity.badRequest().body("Data not saved " + result.toString());
         }
     }
 
@@ -75,16 +80,17 @@ public class FlightController {
 
     //    Update single flight if exist or save if new object
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PutMapping
-    public ResponseEntity<?> updateFlight(@RequestBody FlightDTO flight, BindingResult result) {
-        try {
-            if (!result.hasErrors()) {
+    @PutMapping("/{flightNumber}")
+    public ResponseEntity<?> updateFlight(@PathVariable String flightNumber,@RequestBody FlightDTO flight, BindingResult result) {
+        if (!result.hasErrors()) {
+            if(flightNumber.equals(flight.getFlightNumber())) {
                 return ResponseEntity.ok().body(flightService.updateFlight(flight));
-            } else {
-                return ResponseEntity.badRequest().body(result.getAllErrors());
             }
-        } catch (Exception e) {
-            return ResponseEntity.ok(e.getMessage());
+            else{
+                return ResponseEntity.ok().body("Sorry!, Flight number you are trying to edit is different!");
+            }
+        } else {
+            return ResponseEntity.badRequest().body(result.getAllErrors());
         }
     }
 
@@ -92,24 +98,22 @@ public class FlightController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("{flightNumber}")
     public ResponseEntity<?> deleteFlight(@Valid @PathVariable String flightNumber) {
-        try {
+        try{
             flightService.deleteFlight(flightNumber);
             return ResponseEntity.ok().body("Successfully deleted!");
-        } catch (Exception e) {
+        }
+        catch(Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
-//   View list of all flights between a departure and destination on a given date
+    //   View list of all flights between a departure and destination on a given date
 //   Direct flight only
     @GetMapping("/direct")
-    ResponseEntity<?> findAllDirectFlight(String from, String to, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate flightDate) {
-        try {
-            List<FlightDTO> flights = flightService.findDirectFlights(from, to, flightDate);
-            return ResponseEntity.ok().body(flights);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-
+    ResponseEntity<?> findAllDirectFlight(String from, String to,
+                                          @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+                                                  LocalDate flightDate) {
+        List<FlightDTO> flights = flightService.findDirectFlights(from, to, flightDate);
+        return ResponseEntity.ok().body(flights);
     }
 }

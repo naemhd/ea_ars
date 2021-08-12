@@ -3,20 +3,22 @@ package edu.miu.cs.cs544.ea_ars.controller;
 
 import edu.miu.cs.cs544.ea_ars.domain.Passenger;
 import edu.miu.cs.cs544.ea_ars.domain.Reservation;
+import edu.miu.cs.cs544.ea_ars.domain.User;
+import edu.miu.cs.cs544.ea_ars.domain.UserPrincipal;
 import edu.miu.cs.cs544.ea_ars.dto.PassengerAdopter;
 import edu.miu.cs.cs544.ea_ars.dto.PassengerDTO;
 import edu.miu.cs.cs544.ea_ars.dto.ReservationDTO;
 import edu.miu.cs.cs544.ea_ars.exception.CustomErrorType;
 
-import edu.miu.cs.cs544.ea_ars.service.PassengerService;
-import edu.miu.cs.cs544.ea_ars.service.PassengerServiceImpl;
-import edu.miu.cs.cs544.ea_ars.service.ReservationService;
-import edu.miu.cs.cs544.ea_ars.service.ReservationServiceImpl;
+import edu.miu.cs.cs544.ea_ars.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -31,14 +33,27 @@ public class PassengerController {
     private PassengerService passengerService;
     private ReservationService reservationService;
 
-    @GetMapping("/{id}")
+    @Autowired
+    private MyUserDetailsService userDetailsService;
+
+    @GetMapping("/passengers/{id}")
     public ResponseEntity<?> getOnePassenger(@PathVariable Long id) {
 
-        PassengerDTO passenger = passengerService.findOne(id);
-        if (passenger == null) {
-            return new ResponseEntity<CustomErrorType>(new CustomErrorType("Passenger with id = " + id + " not found"), HttpStatus.NOT_FOUND);
+//        Check if current user role is passaenger and searching for his own reservation
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+       UserDetails name  = userDetailsService.loadUserByUsername(authentication.getName());
+
+       PassengerDTO passenger = passengerService.findOne(id);
+        List<ReservationDTO> reservationDTOS = passenger.getReservations();
+        for(ReservationDTO res : reservationDTOS){
+            if(res.getReservedBy().equals(name.getUsername())){
+                return new ResponseEntity<PassengerDTO>(passenger, HttpStatus.OK);
+            }
         }
-        return new ResponseEntity<PassengerDTO>(passenger, HttpStatus.OK);
+           if (passenger == null) {
+               return new ResponseEntity<CustomErrorType>(new CustomErrorType("Passenger with id = " + id + " not found"), HttpStatus.NOT_FOUND);
+           }
+        return null;
     }
 
     @GetMapping(params = "paged=true")

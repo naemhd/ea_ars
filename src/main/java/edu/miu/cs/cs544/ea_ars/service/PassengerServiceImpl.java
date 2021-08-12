@@ -11,6 +11,8 @@ import edu.miu.cs.cs544.ea_ars.repository.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -23,6 +25,7 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Autowired
     private PassengerRepository passengerRepository;
+
 
     public Page<Passenger> findAll(Pageable pageable) {
         return passengerRepository.findAll(pageable);
@@ -41,6 +44,7 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     public PassengerDTO findOne(Long id) {
+
         if (passengerRepository.findById(id).isPresent()) {
             return PassengerAdopter.getPassengerDTO(passengerRepository.findById(id).get());
         }
