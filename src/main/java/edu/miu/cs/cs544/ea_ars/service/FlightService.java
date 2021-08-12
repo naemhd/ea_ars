@@ -14,6 +14,7 @@ public interface FlightService {
     Page<Flight> findAllFlight(Pageable pageable);
     boolean existsByFlightNumber(String flightNumber);
     FlightDTO findFlight(String flightNumber);
+    Flight findFlightByNumber(String flightNumber);
 
     boolean saveFlight(FlightDTO flight);
     void saveFlights(Set<FlightDTO> flights);
@@ -21,6 +22,8 @@ public interface FlightService {
     FlightDTO updateFlight(FlightDTO flight);
 
     void deleteFlight(String flightNumber);
+    
+    void updateCapacity(String flightNumber, int capacity);
 
     List<FlightDTO> findDirectFlights(String from, String to, LocalDate flightDate);
 

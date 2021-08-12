@@ -25,11 +25,11 @@ public class Ticket {
 
     private LocalDate flightDate;
 
-   @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     private Flight flight;
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn
     private Reservation reservation;
 

@@ -7,6 +7,8 @@ import edu.miu.cs.cs544.ea_ars.dto.adapter.AirPortDtoEntity;
 import edu.miu.cs.cs544.ea_ars.repository.AirPortRepository;
 import edu.miu.cs.cs544.ea_ars.service.AirPortService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,10 @@ public class AirPortController {
     @Autowired
     AirPortService airPortService;
 
+    @GetMapping(params = "paged=true")
+    public Page<Airport> findAll(Pageable pageable) {
+        return airPortService.findAll(pageable);
+    }
     @GetMapping()
     public List<AirPortDto> getAllAirports() {
 
@@ -45,8 +51,10 @@ public class AirPortController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAirPort(@PathVariable Long id) {
+    public String deleteAirPort(@PathVariable Long id) {
+
         airPortService.deleteAirPort(id);
+        return "successfully delete airport with id "+id;
     }
 
     @PutMapping("{id}")

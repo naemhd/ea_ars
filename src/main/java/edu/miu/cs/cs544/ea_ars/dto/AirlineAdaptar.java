@@ -9,7 +9,7 @@ import java.util.List;
 @Component
 public class AirlineAdaptar {
 
-    public static Airline getAirline(AirlineDTO airlineDTO) {
+    public Airline getAirline(AirlineDTO airlineDTO) {
         Airline airline=new Airline();
         if (airlineDTO != null) {
             airline = new Airline(airlineDTO.getCode(), airlineDTO.getName(),airlineDTO.getHistory());
@@ -17,7 +17,7 @@ public class AirlineAdaptar {
         return airline;
     }
 
-    public static AirlineDTO getAirlineDTO(Airline airline) {
+    public AirlineDTO getAirlineDTO(Airline airline) {
         AirlineDTO airlineDTO = new AirlineDTO();
         if (airline != null) {
             airlineDTO = new AirlineDTO(airline.getCode(),airline.getName(),airline.getHistory());
@@ -25,11 +25,11 @@ public class AirlineAdaptar {
         return airlineDTO;
     }
 
-    public static List<AirlineDTO> getAirlineDTOList(List<Airline> airlineList) {
+    public List<AirlineDTO> getAirlineDTOList(List<Airline> airlineList) {
         List<AirlineDTO> airlineDTOList = new ArrayList<>();
         if (airlineList.size() != 0) {
             for (Airline airline : airlineList) {
-                airlineDTOList.add(AirlineAdaptar.getAirlineDTO(airline));
+                airlineDTOList.add(this.getAirlineDTO(airline));
             }
         }
         return airlineDTOList;

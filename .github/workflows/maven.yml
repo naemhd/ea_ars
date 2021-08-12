@@ -27,5 +27,9 @@ jobs:
       run: chmod 600 sshkey/id_rsa
     - name: Deploy to Digital Ocean
       run: scp -o StrictHostKeyChecking=no -i sshkey/id_rsa target/ea_ars-0.0.1-SNAPSHOT.jar root@198.199.68.20:/artifact
+    - name: Stop the service
+      run: ssh -o StrictHostKeyChecking=no -i sshkey/id_rsa root@ars.naemh.com systemctl stop hello-world-spring-boot.service
+    - name: Start the service
+      run: ssh -o StrictHostKeyChecking=no -i sshkey/id_rsa root@ars.naemh.com systemctl start hello-world-spring-boot.service
 
 

@@ -1,11 +1,7 @@
 package edu.miu.cs.cs544.ea_ars.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.*;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -15,35 +11,33 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@ToString
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @NotEmpty
-    @Size(max=6)
-    @Column(length=6, nullable=false)
+    @Size(max = 6)
+    @Column(length = 6, nullable = false)
     private String reservationCode;
 
-//    @NotNull
     private LocalDate reservationDate;
 
-//    @NotNull
     private boolean isPaid;
 
     @ManyToOne
     private User reservedBy;
 
+
     @JsonManagedReference
-    @OneToMany(mappedBy = "reservation", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "reservation", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Ticket> tickets = new HashSet<>();
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn
     private Passenger passenger;
 
@@ -52,18 +46,19 @@ public class Reservation {
         this.reservationDate = reservationDate;
     }
 
-    public Reservation(String reservationCode, LocalDate reservationDate, User reservedBy) {
+    public Reservation(String reservationCode, LocalDate reservationDate, User reservedBy,Passenger passenger) {
         this.reservationCode = reservationCode;
         this.reservationDate = reservationDate;
         this.reservedBy = reservedBy;
+        this.passenger = passenger;
     }
 
-//    Collections convenience method
-    public boolean addTicket(Ticket ticket){
-        boolean success=false;
-        if(tickets.add(ticket)){
+    //    Collections convenience method
+    public boolean addTicket(Ticket ticket) {
+        boolean success = false;
+        if (tickets.add(ticket)) {
             ticket.setReservation(this);
-            success=true;
+            success = true;
         }
         return success;
     }

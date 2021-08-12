@@ -70,6 +70,8 @@ public class PassengerServiceImpl implements PassengerService {
             passenger1.setAddress(passengerDTO.getAddress());
             passenger1.setEmail(passengerDTO.getEmail());
             passenger1.setDateOfBirth(passengerDTO.getDateOfBirth());
+//            passenger1.setId(passengerDTO.getId());
+//            passenger1.setReservations(passengerDTO.getReservations());
 
             return PassengerAdopter.getPassengerDTO(passengerRepository.save(passenger1));
         }

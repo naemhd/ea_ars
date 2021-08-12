@@ -4,6 +4,8 @@ import edu.miu.cs.cs544.ea_ars.dto.AirPortDto;
 import edu.miu.cs.cs544.ea_ars.dto.adapter.AirPortDtoEntity;
 import edu.miu.cs.cs544.ea_ars.repository.AirPortRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +16,12 @@ public class AirPortServiceImpl implements AirPortService {
     AirPortRepository airPortRepository;
     @Autowired
     AirPortDtoEntity airPortDtoEntity;
+
+    @Override
+    public Page<Airport> findAll(Pageable pageable) {
+        return airPortRepository.findAll(pageable);
+    }
+
     @Override
     public List<AirPortDto> findAllAirports() {
 
@@ -30,7 +38,6 @@ public class AirPortServiceImpl implements AirPortService {
     public Airport saveOrUpdateAirport(AirPortDto airPortDto) {
         Airport airport=airPortDtoEntity.creatEntityFromDto(airPortDto);
        return  airport=airPortRepository.save(airport);
-
     }
 
     @Override
