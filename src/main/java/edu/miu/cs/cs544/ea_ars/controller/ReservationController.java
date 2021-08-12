@@ -2,21 +2,15 @@ package edu.miu.cs.cs544.ea_ars.controller;
 
 
 import edu.miu.cs.cs544.ea_ars.domain.Reservation;
-import edu.miu.cs.cs544.ea_ars.dto.PassengerAdopter;
-import edu.miu.cs.cs544.ea_ars.dto.ReservationAdopter;
-import edu.miu.cs.cs544.ea_ars.dto.ReservationDTO;
+import edu.miu.cs.cs544.ea_ars.dto.DTOModel.ReservationDTO;
 import edu.miu.cs.cs544.ea_ars.exception.CustomErrorType;
 import edu.miu.cs.cs544.ea_ars.repository.UserRepository;
 import edu.miu.cs.cs544.ea_ars.service.ReservationService;
-import edu.miu.cs.cs544.ea_ars.service.ReservationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -52,7 +46,7 @@ public class ReservationController {
     }
 
     @PostMapping("/{flightNumber}")
-    public ReservationDTO AddReservation(@Valid @RequestBody ReservationDTO reservationDTO,@PathVariable  String flightNumber) {
+    public ReservationDTO AddReservation(@Valid @RequestBody ReservationDTO reservationDTO, @PathVariable  String flightNumber) {
         if (reservationDTO.getPassenger() != null) {
 //            reservationDTO.getPassenger().addReservation(ReservationAdopter.getReservation(reservationDTO));
             reservationDTO.setPassenger(reservationDTO.getPassenger());

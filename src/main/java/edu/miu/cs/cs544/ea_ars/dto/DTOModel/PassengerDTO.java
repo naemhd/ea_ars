@@ -1,17 +1,16 @@
-package edu.miu.cs.cs544.ea_ars.dto;
+package edu.miu.cs.cs544.ea_ars.dto.DTOModel;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import edu.miu.cs.cs544.ea_ars.domain.Address;
 import edu.miu.cs.cs544.ea_ars.domain.Reservation;
-import lombok.*;
-
+import edu.miu.cs.cs544.ea_ars.dto.adapter.PassengerAdopter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @Data
 @NoArgsConstructor
@@ -41,5 +40,3 @@ public class PassengerDTO {
 
 
 }
-
-

@@ -1,6 +1,6 @@
 package edu.miu.cs.cs544.ea_ars.dto.adapter;
 import edu.miu.cs.cs544.ea_ars.domain.Airport;
-import edu.miu.cs.cs544.ea_ars.dto.AirPortDto;
+import edu.miu.cs.cs544.ea_ars.dto.DTOModel.AirPortDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

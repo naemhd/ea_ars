@@ -2,7 +2,7 @@ package edu.miu.cs.cs544.ea_ars.service;
 
 
 import edu.miu.cs.cs544.ea_ars.domain.Passenger;
-import edu.miu.cs.cs544.ea_ars.dto.PassengerDTO;
+import edu.miu.cs.cs544.ea_ars.dto.DTOModel.PassengerDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

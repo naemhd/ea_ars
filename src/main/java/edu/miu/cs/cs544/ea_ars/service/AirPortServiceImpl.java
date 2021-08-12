@@ -1,6 +1,6 @@
 package edu.miu.cs.cs544.ea_ars.service;
 import edu.miu.cs.cs544.ea_ars.domain.Airport;
-import edu.miu.cs.cs544.ea_ars.dto.AirPortDto;
+import edu.miu.cs.cs544.ea_ars.dto.DTOModel.AirPortDto;
 import edu.miu.cs.cs544.ea_ars.dto.adapter.AirPortDtoEntity;
 import edu.miu.cs.cs544.ea_ars.repository.AirPortRepository;
 import org.springframework.beans.factory.annotation.Autowired;

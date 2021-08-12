@@ -1,12 +1,10 @@
 package edu.miu.cs.cs544.ea_ars.service;
 
-import edu.miu.cs.cs544.ea_ars.domain.Flight;
 import edu.miu.cs.cs544.ea_ars.domain.Reservation;
 import edu.miu.cs.cs544.ea_ars.domain.Ticket;
-import edu.miu.cs.cs544.ea_ars.dto.ReservationAdopter;
-import edu.miu.cs.cs544.ea_ars.dto.ReservationDTO;
+import edu.miu.cs.cs544.ea_ars.dto.DTOModel.ReservationDTO;
+import edu.miu.cs.cs544.ea_ars.dto.adapter.ReservationAdopter;
 import edu.miu.cs.cs544.ea_ars.dto.DTOModel.FlightDTO;
-import edu.miu.cs.cs544.ea_ars.dto.adapter.FlightDTOAdapter;
 import edu.miu.cs.cs544.ea_ars.repository.FlightRepository;
 import edu.miu.cs.cs544.ea_ars.repository.ReservationRepository;
 import edu.miu.cs.cs544.ea_ars.repository.TicketRepository;
@@ -19,12 +17,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 @Service
 @Transactional

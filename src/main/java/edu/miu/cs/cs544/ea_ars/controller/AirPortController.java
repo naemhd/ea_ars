@@ -2,7 +2,7 @@ package edu.miu.cs.cs544.ea_ars.controller;
 
 
 import edu.miu.cs.cs544.ea_ars.domain.Airport;
-import edu.miu.cs.cs544.ea_ars.dto.AirPortDto;
+import edu.miu.cs.cs544.ea_ars.dto.DTOModel.AirPortDto;
 import edu.miu.cs.cs544.ea_ars.dto.adapter.AirPortDtoEntity;
 import edu.miu.cs.cs544.ea_ars.repository.AirPortRepository;
 import edu.miu.cs.cs544.ea_ars.service.AirPortService;

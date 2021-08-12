@@ -3,12 +3,10 @@ package edu.miu.cs.cs544.ea_ars.controller;
 
 import edu.miu.cs.cs544.ea_ars.domain.Passenger;
 import edu.miu.cs.cs544.ea_ars.domain.Reservation;
-import edu.miu.cs.cs544.ea_ars.domain.User;
-import edu.miu.cs.cs544.ea_ars.domain.UserPrincipal;
-import edu.miu.cs.cs544.ea_ars.dto.PassengerAdopter;
-import edu.miu.cs.cs544.ea_ars.dto.PassengerDTO;
-import edu.miu.cs.cs544.ea_ars.dto.ReservationAdopter;
-import edu.miu.cs.cs544.ea_ars.dto.ReservationDTO;
+import edu.miu.cs.cs544.ea_ars.dto.DTOModel.PassengerDTO;
+import edu.miu.cs.cs544.ea_ars.dto.DTOModel.ReservationDTO;
+import edu.miu.cs.cs544.ea_ars.dto.adapter.PassengerAdopter;
+import edu.miu.cs.cs544.ea_ars.dto.adapter.ReservationAdopter;
 import edu.miu.cs.cs544.ea_ars.exception.CustomErrorType;
 
 import edu.miu.cs.cs544.ea_ars.service.*;
@@ -24,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("api/passengers")
@@ -46,7 +43,7 @@ public class PassengerController {
        UserDetails name  = userDetailsService.loadUserByUsername(authentication.getName());
 
        PassengerDTO passenger = passengerService.findOne(id);
-        List<ReservationDTO> reservationDTOS = passenger.getReservations();
+        List<ReservationDTO> reservationDTOS = ReservationAdopter.getReservationDTOList(passenger.getReservations());
         for(ReservationDTO res : reservationDTOS){
             if(res.getReservedBy().equals(name.getUsername())){
                 return new ResponseEntity<PassengerDTO>(passenger, HttpStatus.OK);

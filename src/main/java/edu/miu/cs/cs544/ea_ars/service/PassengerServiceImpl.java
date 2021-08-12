@@ -2,17 +2,12 @@ package edu.miu.cs.cs544.ea_ars.service;
 
 
 import edu.miu.cs.cs544.ea_ars.domain.Passenger;
-import edu.miu.cs.cs544.ea_ars.domain.Reservation;
-import edu.miu.cs.cs544.ea_ars.dto.PassengerAdopter;
-import edu.miu.cs.cs544.ea_ars.dto.PassengerDTO;
-import edu.miu.cs.cs544.ea_ars.dto.ReservationAdopter;
-import edu.miu.cs.cs544.ea_ars.dto.ReservationDTO;
+import edu.miu.cs.cs544.ea_ars.dto.DTOModel.PassengerDTO;
+import edu.miu.cs.cs544.ea_ars.dto.adapter.PassengerAdopter;
 import edu.miu.cs.cs544.ea_ars.repository.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

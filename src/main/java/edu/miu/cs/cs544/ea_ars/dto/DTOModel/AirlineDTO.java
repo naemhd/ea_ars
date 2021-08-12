@@ -1,4 +1,4 @@
-package edu.miu.cs.cs544.ea_ars.dto;
+package edu.miu.cs.cs544.ea_ars.dto.DTOModel;
 
 import edu.miu.cs.cs544.ea_ars.dto.DTOModel.FlightDTO;
 import lombok.Getter;

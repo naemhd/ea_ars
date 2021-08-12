@@ -2,7 +2,7 @@ package edu.miu.cs.cs544.ea_ars.service;
 
 
 import edu.miu.cs.cs544.ea_ars.domain.Reservation;
-import edu.miu.cs.cs544.ea_ars.dto.ReservationDTO;
+import edu.miu.cs.cs544.ea_ars.dto.DTOModel.ReservationDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

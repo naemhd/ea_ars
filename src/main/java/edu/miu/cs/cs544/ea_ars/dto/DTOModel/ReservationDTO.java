@@ -1,12 +1,10 @@
-package edu.miu.cs.cs544.ea_ars.dto;
+package edu.miu.cs.cs544.ea_ars.dto.DTOModel;
 
-
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import edu.miu.cs.cs544.ea_ars.domain.Passenger;
 import edu.miu.cs.cs544.ea_ars.domain.Ticket;
 import edu.miu.cs.cs544.ea_ars.domain.User;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -18,24 +16,24 @@ import java.util.Set;
 @NoArgsConstructor
 public class ReservationDTO {
 
-        private long id;
+    private long id;
 
-        @NotEmpty
-        @Size(max=6)
-        private String reservationCode;
+    @NotEmpty
+    @Size(max = 6)
+    private String reservationCode;
 
-        private LocalDate reservationDate;
+    private LocalDate reservationDate;
 
-        private boolean isPaid;
+    private boolean isPaid;
 
-        private User reservedBy;
+    private User reservedBy;
 
-        private Set<Ticket> tickets = new HashSet<>();
+    private Set<Ticket> tickets = new HashSet<>();
 
-        private Passenger passenger;
+    private Passenger passenger;
 
 
-        //    Collections convenience method
+    //    Collections convenience method
 //        public boolean addTicket(Ticket ticket){
 //            boolean success=false;
 //            if(tickets.add(ticket)){
@@ -44,6 +42,4 @@ public class ReservationDTO {
 //            }
 //            return success;
 //        }
-    }
-
-
+}

@@ -1,6 +1,7 @@
-package edu.miu.cs.cs544.ea_ars.dto;
+package edu.miu.cs.cs544.ea_ars.dto.adapter;
 
 import edu.miu.cs.cs544.ea_ars.domain.Airline;
+import edu.miu.cs.cs544.ea_ars.dto.DTOModel.AirlineDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

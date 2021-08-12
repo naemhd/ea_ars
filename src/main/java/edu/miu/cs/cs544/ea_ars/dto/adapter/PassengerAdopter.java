@@ -1,9 +1,8 @@
-package edu.miu.cs.cs544.ea_ars.dto;
+package edu.miu.cs.cs544.ea_ars.dto.adapter;
 
 import edu.miu.cs.cs544.ea_ars.domain.Passenger;
-import edu.miu.cs.cs544.ea_ars.domain.Reservation;
+import edu.miu.cs.cs544.ea_ars.dto.DTOModel.PassengerDTO;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

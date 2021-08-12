@@ -1,8 +1,8 @@
 package edu.miu.cs.cs544.ea_ars.controller;
 
 import edu.miu.cs.cs544.ea_ars.domain.Airline;
-import edu.miu.cs.cs544.ea_ars.dto.AirlineAdaptar;
-import edu.miu.cs.cs544.ea_ars.dto.AirlineDTO;
+import edu.miu.cs.cs544.ea_ars.dto.adapter.AirlineAdaptar;
+import edu.miu.cs.cs544.ea_ars.dto.DTOModel.AirlineDTO;
 import edu.miu.cs.cs544.ea_ars.service.AirlineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

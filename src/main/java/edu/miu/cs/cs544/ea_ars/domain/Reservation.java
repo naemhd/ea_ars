@@ -28,6 +28,7 @@ public class Reservation {
 
     private boolean isPaid;
 
+
     @ManyToOne
     private User reservedBy;
 

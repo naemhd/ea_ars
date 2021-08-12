@@ -1,8 +1,7 @@
 package edu.miu.cs.cs544.ea_ars.aop;
 
 import edu.miu.cs.cs544.ea_ars.domain.Reservation;
-import edu.miu.cs.cs544.ea_ars.dto.PassengerDTO;
-import edu.miu.cs.cs544.ea_ars.dto.ReservationDTO;
+import edu.miu.cs.cs544.ea_ars.dto.DTOModel.PassengerDTO;
 import edu.miu.cs.cs544.ea_ars.jms.EmailService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
