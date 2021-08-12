@@ -1,6 +1,7 @@
 package edu.miu.cs.cs544.ea_ars.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,6 +26,7 @@ public class Ticket {
 
     private LocalDate flightDate;
 
+    @JsonManagedReference
     @ManyToOne(cascade = {CascadeType.ALL})
     private Flight flight;
 

@@ -46,6 +46,7 @@ public class Flight {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Airport destination;
 
+	@JsonBackReference
 	@OneToMany(mappedBy = "flight",cascade = CascadeType.PERSIST)
 	private Set<Ticket> tickets = new HashSet<>();
 
