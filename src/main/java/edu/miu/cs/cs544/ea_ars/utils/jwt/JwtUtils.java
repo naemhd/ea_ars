@@ -21,15 +21,18 @@ public class JwtUtils {
     private int jwtExpirationMs;
 
     public String generateJwtToken(Authentication authentication) {
+        try {
+            UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
 
-        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-
-        return Jwts.builder()
-                .setSubject((userPrincipal.getUsername()))
-                .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
-                .signWith(SignatureAlgorithm.HS512, jwtSecret)
-                .compact();
+            return Jwts.builder()
+                    .setSubject((userPrincipal.getUsername()))
+                    .setIssuedAt(new Date())
+                    .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+                    .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                    .compact();
+        } catch (Exception e) {
+            return "Unable to generate token requested";
+        }
     }
 
     public String getUserNameFromJwtToken(String token) {

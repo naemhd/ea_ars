@@ -1,6 +1,7 @@
 package edu.miu.cs.cs544.ea_ars.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -46,7 +47,7 @@ public class Flight {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Airport destination;
 
-	@JsonBackReference
+	@JsonManagedReference
 	@OneToMany(mappedBy = "flight",cascade = CascadeType.PERSIST)
 	private Set<Ticket> tickets = new HashSet<>();
 

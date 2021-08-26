@@ -39,19 +39,18 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public boolean saveFlight(FlightDTO flight){
+    public FlightDTO saveFlight(FlightDTO flight){
         if(flightRepository.existsByFlightNumber(flight.getFlightNumber())){
-            return false;
-        }
-        else{
             flightRepository.save(FlightDTOAdapter.dtoToFlight(flight));
+            return FlightDTOAdapter.flightDTOAdapter(flightRepository.findByFlightNumber(flight.getFlightNumber()));
         }
-        return true;
+        return null;
     }
 
     @Override
-    public void saveFlights(Set<FlightDTO> flights){
+    public Set<FlightDTO> saveFlights(Set<FlightDTO> flights){
         flights.forEach(flight -> saveFlight(flight));
+        return flights;
     }
     
     public void updateCapacity(String fn,int capacity) {

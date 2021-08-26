@@ -20,6 +20,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("api/flights")
+@CrossOrigin(origins = "http://localhost:4200")
 public class FlightController {
 
     @Autowired
@@ -60,8 +61,8 @@ public class FlightController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<?> saveFlight(@RequestBody FlightDTO flightRequestEntity, BindingResult result) {
-        if (!result.hasErrors() && flightService.saveFlight(flightRequestEntity)) {
-            return ResponseEntity.ok().body("Successfully Saved!");
+        if (!result.hasErrors()){
+            return ResponseEntity.ok().body(flightService.saveFlight(flightRequestEntity));
         } else {
             return ResponseEntity.badRequest().body("Data not saved " + result.toString());
         }
@@ -100,7 +101,7 @@ public class FlightController {
     public ResponseEntity<?> deleteFlight(@Valid @PathVariable String flightNumber) {
         try{
             flightService.deleteFlight(flightNumber);
-            return ResponseEntity.ok().body("Successfully deleted!");
+            return ResponseEntity.ok().body("");
         }
         catch(Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -108,7 +109,7 @@ public class FlightController {
     }
 
     //   View list of all flights between a departure and destination on a given date
-//   Direct flight only
+//   View list of flights between a departure and destination for a date
     @GetMapping("/direct")
     ResponseEntity<?> findAllDirectFlight(String from, String to,
                                           @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

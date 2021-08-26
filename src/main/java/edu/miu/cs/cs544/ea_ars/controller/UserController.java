@@ -19,6 +19,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("api/auth/users")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
     @Autowired
@@ -29,7 +30,7 @@ public class UserController {
     public ResponseEntity<?> saveUser(@Valid @RequestBody User user, BindingResult result) {
         if (!result.hasErrors()) {
             myUserDetailsService.saveUser(user);
-            return ResponseEntity.accepted().body("Your account " + user.getUsername() + " is created successfully!" + result.toString());
+            return ResponseEntity.ok().body(user);
         }
         else{
             return ResponseEntity.badRequest()
@@ -37,13 +38,13 @@ public class UserController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity<?> login(@RequestBody String loginRequest, BindingResult result) throws JSONException {
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@Valid @RequestBody User user, BindingResult result) {
+        System.out.println(user.getUsername());
         if(!result.hasErrors()){
-            JSONObject obj = new JSONObject(loginRequest);
-           return ResponseEntity.ok().body(myUserDetailsService.login(
-                     obj.getString("username"),
-                     obj.getString("password")));
+           JwtResponse response = myUserDetailsService.login(user.getUsername(),user.getPassword());
+//            ResponseEntity.ok().header("Authorization",response.getAccessToken());
+           return ResponseEntity.ok(response); //).header("Authorization",response.getAccessToken()).body(response);
         }
         return ResponseEntity.internalServerError().body(result.getAllErrors());
     }

@@ -18,7 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
+
     private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
+
     @Autowired
     private JwtUtils jwtUtils;
 
@@ -46,7 +48,6 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
-
     private String parseJwt(HttpServletRequest request) {
         String headerAuth = request.getHeader("Authorization");
         if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
@@ -54,4 +55,5 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         }
         return null;
     }
+
 }

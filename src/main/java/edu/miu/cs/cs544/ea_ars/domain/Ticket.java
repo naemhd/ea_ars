@@ -26,7 +26,7 @@ public class Ticket {
 
     private LocalDate flightDate;
 
-    @JsonManagedReference
+    @JsonBackReference
     @ManyToOne(cascade = {CascadeType.ALL})
     private Flight flight;
 

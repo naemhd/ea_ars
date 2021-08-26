@@ -20,8 +20,6 @@ spring:
       mail:
         smtp:
           auth: "true"
-
-
           starttls:
             enable: "true"
   jpa:
@@ -30,5 +28,4 @@ spring:
 #    database-platform: "org.hibernate.dialect.H2Dialect"
 
 # App Properties
-#spring.security.user.password: Test12345_
 ea.ars.app: ea_ars

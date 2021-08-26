@@ -72,6 +72,4 @@ public class MyUserDetailsService implements UserDetailsService {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         return new JwtResponse(jwtTocken, userPrincipal.getUsername(), userPrincipal.getAuthorities());
     }
-
-
 }

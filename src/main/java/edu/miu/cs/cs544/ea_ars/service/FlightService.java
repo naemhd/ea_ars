@@ -16,8 +16,8 @@ public interface FlightService {
     FlightDTO findFlight(String flightNumber);
     Flight findFlightByNumber(String flightNumber);
 
-    boolean saveFlight(FlightDTO flight);
-    void saveFlights(Set<FlightDTO> flights);
+    FlightDTO saveFlight(FlightDTO flight);
+    Set<FlightDTO> saveFlights(Set<FlightDTO> flights);
 
     FlightDTO updateFlight(FlightDTO flight);
 
